@@ -1,0 +1,19 @@
+*{ 
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgba(255, 228, 196, 0.726);
+    border: 1px solid royalblue;
+}
+
+header{
+    background-color: rgba(255, 235, 205, 0.514);
+    border: blueviolet 1px solid;
+}
+
+footer{
+    background-color: rgba(255, 235, 205, 0.514);
+    border: 1px solid blue;
+}

@@ -1,0 +1,21 @@
+<header class="container">
+    <nav>A insérer : 
+    Date 
+    Titre
+    Liste déroulante textes
+    Liste déroulante dessins
+        {% if app.user %}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{{ path('app_login') }}" class="nav-link">Connexion</a>
+                </li>
+            </ul>
+        {% endif %}
+    </nav>
+</header>
