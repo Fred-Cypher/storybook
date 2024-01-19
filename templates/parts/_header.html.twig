@@ -1,10 +1,20 @@
 <header class="container">
     <nav>A insérer : 
     Date 
-    Titre
+    <h1>Contes et divers textes</h1>
     Liste déroulante textes
     Liste déroulante dessins
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a href="{{ path('app_main') }}" class="nav-link">Accueil</a>
+            </li>
+        </ul>
         {% if app.user %}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{{ path('app_profile_index') }}" class="nav-link">Profil</a>
+                </li>
+            </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>

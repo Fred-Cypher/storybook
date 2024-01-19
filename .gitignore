@@ -21,3 +21,6 @@
 
 ### Autres ###
 /.env
+/public/assets/images
+/public/assets/uploads
+divers.md

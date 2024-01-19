@@ -6,6 +6,7 @@
 body{
     background-color: rgba(255, 228, 196, 0.726);
     border: 1px solid royalblue;
+    height: 100vh;
 }
 
 header{
