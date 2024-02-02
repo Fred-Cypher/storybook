@@ -17,6 +17,9 @@ class Tales
     #[ORM\Column(length: 100)]
     private ?string $title = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     #[ORM\ManyToOne(inversedBy: 'tales')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
@@ -55,6 +58,18 @@ class Tales
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
