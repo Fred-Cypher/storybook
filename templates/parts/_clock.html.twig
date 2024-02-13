@@ -1,0 +1,33 @@
+<!--Dayspedia.com widget-->
+<div class="DPDC" cityid="1020" lang="fr" id="dayspedia_widget_107595b471ab8913" host="https://dayspedia.com" ampm="false" nightsign="true" sun="false">
+
+	<a class="DPl" href="https://dayspedia.com/time/fr/Paris/" target="_blank">
+		<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="dayspediasvg">
+			<path class="dayspedialogo" d="M0,0v16h1.7c-0.1-0.2-0.1-0.3-0.1-0.5c0-0.9,0.8-1.6,1.6-1.6c0.9,0,1.6,0.8,1.6,1.6c0,0.2,0,0.3-0.1,0.5h1.8 
+			c-0.1-0.2-0.1-0.3-0.1-0.5c0-0.9,0.8-1.6,1.6-1.6s1.6,0.8,1.6,1.6c0,0.2,0,0.3-0.1,0.5h1.8c-0.1-0.2-0.1-0.3-0.1-0.5 
+			c0-0.9,0.8-1.6,1.6-1.6c0.9,0,1.6,0.8,1.6,1.6c0,0.2,0,0.3-0.1,0.5H16V0H0z 
+			M4.2,8H2V2h2.2c2.1,0,3.3,1.3,3.3,3S6.3,8,4.2,8z 
+			M11.4,6.3h-0.8V8H9V2h2.5c1.4,0,2.4,0.8,2.4,2.1C13.9,5.6,12.9,6.3,11.4,6.3z 
+			M4.4,3.5H3.7v3h0.7C5.4,6.5,6,6,6,5 C6,4.1,5.4,3.5,4.4,3.5z 
+			M11.3,3.4h-0.8V5h0.8c0.6,0,0.9-0.3,0.9-0.8C12.2,3.7,11.9,3.4,11.3,3.4z">
+			</path>
+		</svg>
+		<span title="DaysPedia.com" class="dayspedialink">Powered&nbsp;by DaysPedia.com</span>
+	</a>
+	<div class="DPDCh">Heure actuelle à Paris</div>
+	<div class="DPDCt">
+		<span class="DPDCth">00</span>
+		<span class="DPDCtm">00</span> 
+		<span class="DPDCts">00</span>
+		<span class="DPDCt12" style="display: none;"></span>
+	</div>
+	<div class="DPDCd">
+		<span class="DPDCdt">lun. 1 janvier</span>
+		<span class="DPDCtn" style="display: none;"><i></i></span>
+	</div>
+	
+	{% block javascripts %}
+		<script src="{{ asset('assets/js/clock.js') }}" defer></script>
+	{% endblock %}
+	<!--/DPDC-->
+	</div><!--Dayspedia.com widget ENDS-->

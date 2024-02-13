@@ -1,0 +1,154 @@
+.DPDC{
+    display: table;
+    position: relative;
+    box-sizing: border-box;
+    font-size: 100.01%;
+    font-style: normal;
+    font-family: Arial;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    user-select: none
+}
+
+.DPDCh,.DPDCd{
+    width: fit-content;
+    line-height: 0.5
+}
+
+.DPDCh{
+    margin-bottom: 0.5rem
+}
+
+.DPDCd{
+    margin-top: 0.24rem
+}
+
+.DPDCt{
+    line-height: 1.5;
+    text-align: center;
+}
+
+.DPDCth,.DPDCtm,.DPDCts{
+    display: inline-block;
+    vertical-align: text-top;
+    white-space: nowrap;
+    font-size: 1.5rem;
+}
+
+.DPDCth{
+    min-width: 0.6em;
+    text-align: center
+}
+
+.DPDCtm,.DPDCts{
+    min-width: 0.6em
+}
+
+.DPDCtm::before,.DPDCts::before{
+    display: inline-block;
+    content: ':';
+    vertical-align: middle;
+    margin: -0.34rem 0 0 -0.07rem;
+    width: .32rem;
+    text-align: center;
+    opacity: .72;
+    filter: alpha(opacity=72)
+}
+
+.DPDCt12{
+    display: inline-block;
+    vertical-align: baseline;
+    top: -0.12rem;
+    position: relative;
+    font-size: 40%
+}
+
+.DPDCdt{
+    margin-right: 0.48rem
+}
+
+.DPDCtn{
+    display: inline-block;
+    position: relative;
+    width: 13px;
+    height: 13px;
+    border: 2px solid;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.DPDCtn>i{
+    display: block;
+    content: '';
+    position: absolute;
+    right: 33%;
+    top: -5%;
+    width: 85%;
+    height: 85%;
+    border-radius: 50%
+}
+
+.DPDC{
+    width: auto;
+    padding: 0.6rem;
+    background-color: /*#ffffff*/ rgba(255, 228, 196, 0.726);
+    /*border: 1px solid #343434;*/
+    border-radius: 8px
+} /* widget width, padding, background, border, rounded corners */
+
+.DPDCh{
+    color: #007DBF;
+    font-weight: normal
+} /* headline color, font-weight*/
+
+.DPDCt,.DPDCd{
+    color: #343434;
+    font-weight: bold}
+     /* time & date color, font-weight */
+
+.DPDCtn{
+    border-color: #343434
+} /* night-sign color = time & date color */
+
+.DPDCtn>i{
+    background-color: #343434
+} /* night-sign color = time & date color */
+
+.DPDCt{
+    font-size: 1.2rem
+} /* time font-size */
+
+.DPDCh{
+    font-size: 1rem
+} /* headline */
+
+.DPDCd{
+    font-size: .9rem;
+    margin-top: 0.5rem;
+}/* date font-size */
+
+.dayspediasvg{
+    position: absolute;
+    right: 4px;
+    bottom: 8px;
+    width: 10px;
+    height: 10px
+}
+
+.dayspedialink{
+    position: absolute;
+    right: 18px;
+    bottom: 6px;
+    height: 15px;
+    width: 45px;
+    overflow: hidden;
+    text-align: right;
+    font: normal 7px/7px Arial,sans-serif!important;
+    color: /*defined*/#007DBF
+}
+
+.dayspedialogo{
+    fill: /*defined*/#007DBF;
+}
