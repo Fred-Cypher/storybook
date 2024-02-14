@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use App\Repository\GamesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/games', name: 'app_games_')]
 class GamesController extends AbstractController
 {
-    #[Route('/games', name: 'app_games')]
-    public function index(): Response
-    {
+    #[Route('/', name: 'index')]
+    public function index(GamesRepository $gamesRepository): Response
+    {   
         return $this->render('games/index.html.twig', [
-            'controller_name' => 'GamesController',
+            'games' => $gamesRepository->findBy([], ['title' => 'asc'])
         ]);
     }
-}
+} 

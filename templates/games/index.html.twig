@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeux vidéo{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h2>Mes jeux vidéos</h2>
+                <div>Vous trouverez ici un aperçu des jeux vidéos que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</div>
+            </div>  
+            <div class="col-md-4 col-lg-3">
+            <!-- Boucle -->
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="Jaquette du jeu">
+                    <div class="card-body">
+                        <div class="card-title h5">Titre</div>
+                        <div class="card-title h6">Sous-titre</div>
+                        <p class="card-text">
+                        Editeur / Développeur
+                        </p>
+                        <a href="#" class="btn btn-primary">Lien Modal</a>
+                    </div>
+                    </div>
+            </div>
+            {% for game in games %}
+                {{ game.title }}
+            {% endfor %}
+
+            <!-- Button trigger modal -->
+            <a type="link" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Lien demo modal
+            </a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Titre du jeu vidéo - Sous-titre</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

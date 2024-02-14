@@ -3,9 +3,18 @@
 {% block title %}Liste des contes{% endblock %}
 
 {% block body %}
-<main class="container">
-    <section>
-        <h2>Liste des contes</h2>
-    </section>
-</main>
+    <main class="container mt-5">
+        <section class="row">
+            <div class="col-12">
+                <h2>Liste des contes</h2>
+                <p>Contes et petits textes que j'ai écrits il y a quelques années.</p>
+                <p>Cliquez sur le titre pour lire le conte. </p>
+            </div>
+            <div class="col-12">
+                {% for tale in tales %}
+                    {{ tale.title }}
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 {% endblock %}
