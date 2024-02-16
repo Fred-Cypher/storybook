@@ -5,8 +5,19 @@
 {% block body %}
     <main class="container">
         <section class="row">
+            <div class="col-12 h3">Ajouter un conte</div>
             <div class="col-md-6">
                 Formulaire d'enregistrement d'un conte
+                {{ form_start(form) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.explanation) }}
+                    {{ form_row(form.digest) }}
+                    {{ form_row(form.content) }}
+                    {{ form_row(form.drawing) }}
+                    {{ form_row(form.caption) }}
+                    {{ form_row(form.user) }}
+                    <button type="submit" class="btn btn-outline-dark">Enregistrer le conte</button>
+                {{ form_end(form) }}
             </div>
         </section>
     </main>
