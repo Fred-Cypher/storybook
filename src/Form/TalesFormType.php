@@ -15,21 +15,39 @@ class TalesFormType extends AbstractType
     {
         $builder
             ->add('title', options:[
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ], 
                 'label' => 'Titre : '
             ])
             ->add('explanation', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ], 
                 'label' => 'Note explicative (facultatif) :'
             ])
             ->add('digest', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
                 'label' => 'Résumé : '
             ])
             ->add('content', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
                 'label' => 'Conte : '
             ])
             ->add('drawing', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
                 'label' => 'Image d\'illustration :'
             ])
             ->add('caption', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
                 'label' => 'Légende de l\'image : '
             ])
             ->add('user', EntityType::class, [
