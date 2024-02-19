@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\GamesRepository;
+use App\Repository\RecentGamesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GamesRepository::class)]
-class Games
+#[ORM\Entity(repositoryClass: RecentGamesRepository::class)]
+class RecentGames
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,19 +29,13 @@ class Games
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $category = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $pegi = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $support = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $configuration = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $digest = null;
 
-    #[ORM\ManyToOne(inversedBy: 'games')]
+    #[ORM\ManyToOne(inversedBy: 'recentGames')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
 
@@ -121,33 +115,9 @@ class Games
         return $this->pegi;
     }
 
-    public function setPegi(?int $pegi): static
+    public function setPegi(int $pegi): static
     {
         $this->pegi = $pegi;
-
-        return $this;
-    }
-
-    public function getSupport(): ?string
-    {
-        return $this->support;
-    }
-
-    public function setSupport(string $support): static
-    {
-        $this->support = $support;
-
-        return $this;
-    }
-
-    public function getConfiguration(): ?string
-    {
-        return $this->configuration;
-    }
-
-    public function setConfiguration(?string $configuration): static
-    {
-        $this->configuration = $configuration;
 
         return $this;
     }
