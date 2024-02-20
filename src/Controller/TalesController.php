@@ -34,7 +34,7 @@ class TalesController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form ->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
             $slug = $slugger->slug($tale->getTitle());
             $tale->setSlug($slug);
 

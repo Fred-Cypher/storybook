@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\RecentGames;
+use App\Entity\Users;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,16 +14,53 @@ class RecentGamesFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('subtitle')
-            ->add('editor')
-            ->add('cover')
-            ->add('category')
-            ->add('pegi')
-            ->add('digest')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('user')
+            ->add('title', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Titre : '
+            ])
+            ->add('subtitle', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Sous-titre : '
+            ])
+            ->add('editor', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Développeur / Éditeur : '
+            ])
+            ->add('cover', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Illustration représentant le jeu : '
+            ])
+            ->add('category', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Catégorie(s) : '
+            ])
+            ->add('pegi', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Âge minimum recommandé : '
+            ])
+            ->add('digest', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Résumé : '
+            ])
+            ->add('user', EntityType::class, [
+                'class' => Users::class,
+                'choice_label' => 'nickname',
+                'label' => 'Utilisateur : '
+            ])
         ;
     }
 
