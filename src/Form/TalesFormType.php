@@ -50,11 +50,7 @@ class TalesFormType extends AbstractType
                 ],
                 'label' => 'Légende de l\'image : '
             ])
-            ->add('user', EntityType::class, [
-                'class' => Users::class,
-                'choice_label' => 'nickname',
-                'label' => 'Utilisateur : '
-            ])
+            
         ;
     }
 

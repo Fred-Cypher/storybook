@@ -38,6 +38,7 @@ class GamesController extends AbstractController
         $formGame->handleRequest($request);
 
         if($formGame->isSubmitted() && $formGame->isValid()){
+            $game->setUser($this->getUser());
             $manager->persist($game);
             $manager->flush();
 
@@ -56,14 +57,15 @@ class GamesController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $game = new RecentGames();
+        $recentGame = new RecentGames();
 
-        $formRecent = $this->createForm(RecentGamesFormType::class, $game);
+        $formRecent = $this->createForm(RecentGamesFormType::class, $recentGame);
 
         $formRecent->handleRequest($request);
 
         if ($formRecent->isSubmitted() && $formRecent->isValid()) {
-            $manager->persist($game);
+            $recentGame->setUser($this->getUser());
+            $manager->persist($recentGame);
             $manager->flush();
 
             $this->addFlash('success', 'Le jeu récent a bien été enregistré');
