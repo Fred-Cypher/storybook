@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecentGamesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,11 +46,15 @@ class RecentGames
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
+
+    #[ORM\OneToMany(targetEntity: Illustrations::class, mappedBy: 'recentGames', orphanRemoval: true)]
+    private Collection $illustrations;
     
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->created_at = new \DateTimeImmutable();
+        $this->illustrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -172,6 +178,36 @@ class RecentGames
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Illustrations>
+     */
+    public function getIllustrations(): Collection
+    {
+        return $this->illustrations;
+    }
+
+    public function addIllustration(Illustrations $illustration): static
+    {
+        if (!$this->illustrations->contains($illustration)) {
+            $this->illustrations->add($illustration);
+            $illustration->setRecentGames($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIllustration(Illustrations $illustration): static
+    {
+        if ($this->illustrations->removeElement($illustration)) {
+            // set the owning side to null (unless already changed)
+            if ($illustration->getRecentGames() === $this) {
+                $illustration->setRecentGames(null);
+            }
+        }
 
         return $this;
     }

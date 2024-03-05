@@ -26,3 +26,12 @@ footer{
 .backTo{
     height: 6rem;
 }
+
+.thumbnail{
+    width: 10rem;
+    height: 10rem;
+}
+
+.cover{
+    max-width: 20rem;
+}

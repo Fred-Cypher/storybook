@@ -6,6 +6,7 @@ use App\Entity\RecentGames;
 use App\Entity\Users;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,12 +33,21 @@ class RecentGamesFormType extends AbstractType
                 ],
                 'label' => 'Développeur / Éditeur : '
             ])
-            ->add('cover', options: [
+            ->add('illustrations', FileType::class,[
+                'label' => 'Image d`\'illustration du jeu : ',
+                'multiple' => true,
+                'mapped' => false,
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ]
+            ])
+            /*->add('cover', options: [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
                 'label' => 'Illustration représentant le jeu : '
-            ])
+            ])*/
             ->add('category', options: [
                 'attr' => [
                     'class' => 'form-control mt-2'
@@ -55,11 +65,6 @@ class RecentGamesFormType extends AbstractType
                     'class' => 'form-control mt-2'
                 ],
                 'label' => 'Résumé : '
-            ])
-            ->add('user', EntityType::class, [
-                'class' => Users::class,
-                'choice_label' => 'nickname',
-                'label' => 'Utilisateur : '
             ])
         ;
     }

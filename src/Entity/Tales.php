@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TalesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,9 +36,6 @@ class Tales
     private ?string $content = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $drawing = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $caption = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -45,10 +44,14 @@ class Tales
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
+    #[ORM\OneToMany(targetEntity: Drawings::class, mappedBy: 'tales', orphanRemoval: true)]
+    private Collection $drawings;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->created_at = new \DateTimeImmutable();
+        $this->drawings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,18 +131,6 @@ class Tales
         return $this;
     }
 
-    public function getDrawing(): ?string
-    {
-        return $this->drawing;
-    }
-
-    public function setDrawing(?string $drawing): static
-    {
-        $this->drawing = $drawing;
-
-        return $this;
-    }
-
     public function getCaption(): ?string
     {
         return $this->caption;
@@ -172,6 +163,36 @@ class Tales
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Drawings[]
+     */
+    public function getDrawings(): Collection
+    {
+        return $this->drawings;
+    }
+
+    public function addDrawing(Drawings $drawing): self
+    {
+        if (!$this->drawings->contains($drawing)) {
+            $this->drawings[] = $drawing;
+            $drawing->setTales($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDrawing(Drawings $drawing): static
+    {
+        if ($this->drawings->removeElement($drawing)) {
+            // set the owning side to null (unless already changed)
+            if ($drawing->getTales() === $this) {
+                $drawing->setTales(null);
+            }
+        }
 
         return $this;
     }

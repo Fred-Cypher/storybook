@@ -7,6 +7,7 @@ use App\Entity\Users;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,12 +34,21 @@ class GamesFormType extends AbstractType
                 ],
                 'label' => 'Développeur / Éditeur : '
             ])
-            ->add('cover', options: [
+            ->add('covers', FileType::class, [
+            'label' => 'Image de la jaquette du jeu : ',
+            'multiple' => true,
+            'mapped' => false,
+            'required' => true,
+            'attr' => [
+                'class' => 'form-control mt-2'
+            ],
+            ])
+            /*->add('cover', options: [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
                 'label' => 'Image de jaquette : '
-            ])
+            ])*/
             ->add('category', options: [
             'attr' => [
                 'class' => 'form-control mt-2'
@@ -71,18 +81,12 @@ class GamesFormType extends AbstractType
             ],
             'label' => 'Configuration minimale : '
         ])
-        
             ->add('digest', options: [
             'attr' => [
                 'class' => 'form-control mt-2'
             ],
             'label' => 'Résumé : '
         ])
-            ->add('user', EntityType::class, [
-                'class' => Users::class,
-                'choice_label' => 'nickname',
-                'label' => 'Utilisateur : '
-            ])
         ;
     }
 

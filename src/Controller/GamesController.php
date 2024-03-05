@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Covers;
 use App\Entity\Games;
 use App\Entity\RecentGames;
 use App\Form\GamesFormType;
 use App\Form\RecentGamesFormType;
 use App\Repository\GamesRepository;
 use App\Repository\RecentGamesRepository;
+use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,7 @@ class GamesController extends AbstractController
     }
 
     #[Route('/admin/new', 'new')]
-    public function newGame(Request $request, EntityManagerInterface $manager): Response
+    public function newGame(Request $request, EntityManagerInterface $manager, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
@@ -38,7 +40,21 @@ class GamesController extends AbstractController
         $formGame->handleRequest($request);
 
         if($formGame->isSubmitted() && $formGame->isValid()){
+            $covers = $formGame->get('covers')->getData();
+            // images = covers
+
+            foreach($covers as $cover){
+                $folder = 'games';
+                $file = $pictureService->add($cover, $folder, 300, 300);
+
+                $image = new Covers;
+                $image->setName($file);
+                $game->addCover($image);
+            }
+            
+
             $game->setUser($this->getUser());
+           /* $game->setCover($fichier);*/
             $manager->persist($game);
             $manager->flush();
 

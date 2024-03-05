@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GamesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,9 +24,6 @@ class Games
 
     #[ORM\Column(length: 255)]
     private ?string $editor = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $cover = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $category = null;
@@ -51,10 +50,14 @@ class Games
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
+    #[ORM\OneToMany(targetEntity: Covers::class, mappedBy: 'games', orphanRemoval: true, cascade:['persist'])]
+    private Collection $covers;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->created_at = new \DateTimeImmutable();
+        $this->covers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,18 +97,6 @@ class Games
     public function setEditor(string $editor): static
     {
         $this->editor = $editor;
-
-        return $this;
-    }
-
-    public function getCover(): ?string
-    {
-        return $this->cover;
-    }
-
-    public function setCover(string $cover): static
-    {
-        $this->cover = $cover;
 
         return $this;
     }
@@ -202,6 +193,36 @@ class Games
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Covers>
+     */
+    public function getCovers(): Collection
+    {
+        return $this->covers;
+    }
+
+    public function addCover(Covers $cover): static
+    {
+        if (!$this->covers->contains($cover)) {
+            $this->covers->add($cover);
+            $cover->setGames($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCover(Covers $cover): static
+    {
+        if ($this->covers->removeElement($cover)) {
+            // set the owning side to null (unless already changed)
+            if ($cover->getGames() === $this) {
+                $cover->setGames(null);
+            }
+        }
 
         return $this;
     }
