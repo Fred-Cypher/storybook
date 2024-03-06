@@ -3,23 +3,23 @@
 {% block title %}Jeux vidéo{% endblock %}
 
 {% block body %}
-    <main class="container vh-100">
+    <main class="container vh-100 m-auto">
         
         <div class="col-12">
             <h2>Mes jeux vidéos</h2>
             <div>Vous trouverez ici un aperçu des jeux vidéos que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</div>
         </div> 
 
-        <section class="row">
+        <section class="row m-auto">
             <h3>Jeux anciens</h3>
             <span>Jeux essentiellement sur PC, mais également sur DS et 3DS</span>
             <div class="col-md-4 col-lg-3">
             <!-- Boucle -->
                 
             </div>
-            <div class="col-12 row">
+            <div class="col-12 row m-auto">
                 {% for game in games %}
-                    <div class="card col-md-4 g-2">
+                    <div class="card col-md-3 m-2 g-2">
                         <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail" alt="Jaquette du jeu">
                         <div class="card-body">
                             <div class="card-title h5">{{ game.title }}</div>
@@ -27,10 +27,10 @@
                             <p class="card-text">
                             {{ game.editor }}
                             </p>
-                            <a type="link" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#gameModal">Voir la fiche du jeu</a>
+                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ game.slug }}">Voir la fiche du jeu</button>
                         </div>
                     </div>
-                    <div class="modal fade" id="gameModal" tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="{{ game.slug }}" tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">

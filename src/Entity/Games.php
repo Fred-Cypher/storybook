@@ -53,6 +53,9 @@ class Games
     #[ORM\OneToMany(targetEntity: Covers::class, mappedBy: 'games', orphanRemoval: true, cascade:['persist'])]
     private Collection $covers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -223,6 +226,18 @@ class Games
                 $cover->setGames(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
