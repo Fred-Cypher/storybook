@@ -10,16 +10,16 @@
             <div>Vous trouverez ici un aperçu des jeux vidéos que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</div>
         </div> 
 
-        <section class="row m-auto">
+        <section class="row">
             <h3>Jeux anciens</h3>
             <span>Jeux essentiellement sur PC, mais également sur DS et 3DS</span>
             <div class="col-md-4 col-lg-3">
             <!-- Boucle -->
                 
             </div>
-            <div class="col-12 row m-auto">
+            <div class="col-12 row justify-content-center p-3">
                 {% for game in games %}
-                    <div class="card col-md-3 m-2 g-2">
+                    <div class="card col-md-3 m-2">
                         <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail" alt="Jaquette du jeu">
                         <div class="card-body">
                             <div class="card-title h5">{{ game.title }}</div>
@@ -31,14 +31,17 @@
                         </div>
                     </div>
                     <div class="modal fade" id="{{ game.slug }}" tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="gameModalLabel">{{ game.title }} - {{ game.subtitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <img src="{{ asset('assets/uploads/games/' ~ game.covers[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
+                                <div class="modal-body row col-12">
+                                    <div class="col-md-5">
+                                        <img src="{{ asset('assets/uploads/games/' ~ game.covers[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
+                                    </div>
+                                    <div class="col-md-7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptas animi, eum earum quaerat possimus, laudantium error consequuntur doloremque veniam laboriosam aperiam facere vero architecto dolorum repudiandae tenetur corrupti quia.</div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -76,45 +79,40 @@
         <section class="row">
             <h3>Jeux récents</h3>
             <span>Jeux PC exclusivement</span>
-            <div class="col-md-4 col-lg-3">
-            <!-- Boucle -->
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="Jaquette du jeu">
-                    <div class="card-body">
-                        <div class="card-title h5">Titre</div>
-                        <div class="card-title h6">Sous-titre</div>
-                        <p class="card-text">
-                        Editeur / Développeur
-                        </p>
-                        <a href="#" class="btn btn-primary">Lien Modal</a>
-                    </div>
-                    </div>
-            </div>
-            {% for recentgame in recentgames %}
-                {{ recentgame.title }}
-            {% endfor %}
-
-            <!-- Button trigger modal -->
-            <a type="link" class="btn" data-bs-toggle="modal" data-bs-target="#RecentGameModal">
-            Lien demo modal jeux récents
-            </a>
-
-            <!-- Modal -->
-            <div class="modal fade" id="RecentGameModal" tabindex="-1" aria-labelledby="RecentGameModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="RecentGameModalLabel">Titre du jeu vidéo récent - Sous-titre</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <div class="col-12 row justify-content-center p-3">
+                {% for recentgame in recentgames %}
+                    <div class="card col-md-3 m-2">
+                        <img src="{{ asset('assets/uploads/illustrations/miniatures/300x300-' ~ recentgame.illustrations[0].name) }}" class="card-img-top thumbnail" alt="Jaquette du jeu">
+                        <div class="card-body">
+                            <div class="card-title h5">{{ recentgame.title }}</div>
+                            <div class="card-title h6">{{ recentgame.subtitle }}</div>
+                            <p class="card-text">
+                            {{ recentgame.editor }}
+                            </p>
+                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ recentgame.slug }}">Voir la fiche du jeu</button>
                         </div>
                     </div>
-                </div>
+                    <div class="modal fade" id="{{ recentgame.slug }}" tabindex="-1" aria-labelledby="recentgameModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="recentgameModalLabel">{{ recentgame.title }} - {{ recentgame.subtitle }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body row col-12">
+                                    <div class="col-md-5"> 
+                                        <img src="{{ asset('assets/uploads/illustrations/' ~ recentgame.illustrations[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
+                                    </div>
+                                    <div class="col-md-7">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore rerum dolor eaque excepturi magnam, minima optio consequatur nulla alias! Corporis exercitationem consectetur nemo quisquam a quaerat eveniet commodi suscipit modi!
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </section>
     </main>

@@ -25,9 +25,6 @@ class RecentGames
     #[ORM\Column(length: 255)]
     private ?string $editor = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $cover = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $category = null;
 
@@ -47,7 +44,7 @@ class RecentGames
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\OneToMany(targetEntity: Illustrations::class, mappedBy: 'recentGames', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Illustrations::class, mappedBy: 'recentGames', orphanRemoval: true,cascade: ['persist'])]
     private Collection $illustrations;
 
     #[ORM\Column(length: 255)]
@@ -97,18 +94,6 @@ class RecentGames
     public function setEditor(string $editor): static
     {
         $this->editor = $editor;
-
-        return $this;
-    }
-
-    public function getCover(): ?string
-    {
-        return $this->cover;
-    }
-
-    public function setCover(string $cover): static
-    {
-        $this->cover = $cover;
 
         return $this;
     }

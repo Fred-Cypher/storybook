@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Covers;
 use App\Entity\Games;
+use App\Entity\Illustrations;
 use App\Entity\RecentGames;
 use App\Form\EditGameFormType;
 use App\Form\GamesFormType;
@@ -105,7 +106,7 @@ class GamesController extends AbstractController
     }
 
     #[Route('/admin/new_recent', name: 'newRecent')]
-    public function newRecentGame(Request $request, EntityManagerInterface $manager, SluggerInterface $slugger): Response
+    public function newRecentGame(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
@@ -116,6 +117,17 @@ class GamesController extends AbstractController
         $formRecent->handleRequest($request);
 
         if ($formRecent->isSubmitted() && $formRecent->isValid()) {
+            $illustrations = $formRecent->get('illustrations')->getData();
+
+            foreach($illustrations as $illustration){
+                $folder = 'illustrations';
+                $file = $pictureService->add($illustration, $folder, 300, 300);
+
+                $image = new Illustrations;
+                $image->setName($file);
+                $recentGame->addIllustration($image);
+            }
+
             $recentGame->setUser($this->getUser());
             $slug = $slugger->slug($recentGame->getTitle());
             $recentGame->setSlug($slug);
