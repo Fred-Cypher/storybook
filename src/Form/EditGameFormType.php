@@ -36,7 +36,7 @@ class EditGameFormType extends AbstractType
                 'label' => 'Image de la jaquette du jeu : ',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],

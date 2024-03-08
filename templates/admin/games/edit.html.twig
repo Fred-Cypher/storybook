@@ -1,1 +1,40 @@
-edition jeu
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - Modification Jeu vidéo{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="col">
+            <div class="col-12 h3">Modifier un jeu vidéo ancien</div>
+            <div class="mb-5">
+                {{ form_start(formGame) }}
+                    {{ form_row(formGame.title) }}
+                    {{ form_row(formGame.subtitle) }}
+                    {{ form_row(formGame.editor) }}
+                    {{ form_row(formGame.category) }}
+                    {{ form_row(formGame.pegi) }}
+                    {{ form_row(formGame.support) }}
+                    {{ form_row(formGame.configuration) }}
+                    {{ form_row(formGame.digest) }}
+                    {% if app.request.attributes.get('_route') == 'app_games_edit_game' %}
+                        <div class="my-2">Jaquette actuelle :</div>
+                        {% for cover in games.covers %}
+                            <div>
+                                <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ cover.name) }}" class="card-img-top thumbnail" alt="Jaquette du jeu">
+                                <a href="{{ path('app_games_delete_cover', {id: cover.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ cover.id) }}" class="btn btn-danger">Supprimer l'image</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_row(formGame.covers) }}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-dark">Enregistrer la modification</button>
+                    </div>
+                {{ form_end(formGame) }}
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="asset('assets/js/covers.js')" defer></script>
+{% endblock %}

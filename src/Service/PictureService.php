@@ -88,7 +88,7 @@ class PictureService
         return $file;
     }
 
-    public function delete(string $file, ?string $folder = '',?int $width = 250, ?int $height = 250)
+    public function delete(string $file, ?string $folder = '', ?int $width = 250, ?int $height = 250)
     {
         if($file !== 'default.webp'){
             $success = false;

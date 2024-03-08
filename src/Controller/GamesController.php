@@ -14,6 +14,7 @@ use App\Repository\RecentGamesRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,26 +74,63 @@ class GamesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show_game', methods: ['GET'])]
-    public function showGame(Games $games): Response
+    #[Route('/admin/delete/{id}', name: 'delete_game')]
+    public function deleteGame(Games $games): Response
     {
-        return $this->render('games/_show.html.twig', [
-            'game' => $games
-        ]);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $games);
+
+        return $this->render('admin/index.html.twig');
     }
 
-    #[Route('admin/edit/{id}', name: 'edit_game', methods: ['GET', 'POST'])]
-    public function editGame(Request $request, Games $games, GamesRepository $gamesRepository): Response
+    #[Route('/admin/delete/cover/{id}', name: 'delete_cover', methods: ['DELETE'])]
+    public function deleteCover(Covers $cover, Request $request, EntityManagerInterface $manager, PictureService $pictureService, Games $games): JsonResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $games);
+
+        $data = json_decode($request->getContent(), true);
+
+        if($this->isCsrfTokenValid('delete' . $cover->getId(), $data['_token'])){
+            $coverName = $cover->getName();
+
+            if($pictureService->delete($coverName, 'games', 300, 300)){
+                $manager->remove($cover);
+                $manager->flush();
+
+                return new JsonResponse(['success' => true], 400);
+            }
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+        }
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
+
+    #[Route('/admin/edit/{id}', name: 'edit_game', methods: ['GET', 'POST'])]
+    public function editGame(Request $request, Games $game, GamesRepository $gamesRepository, PictureService $pictureService, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $formGame = $this->createForm(EditGameFormType::class, $games);
+        $formGame = $this->createForm(EditGameFormType::class, $game);
         $formGame->handleRequest($request);
 
         if ($formGame->isSubmitted() && $formGame->isValid()) {
-            $games->setUser($this->getUser());
-            $games->setUpdatedAt(new \DateTimeImmutable());
-            $gamesRepository->save($games, true);
+
+            $covers = $formGame->get('covers')->getData();
+            // images = covers
+
+            foreach ($covers as $cover) {
+                $folder = 'games';
+                $file = $pictureService->add($cover, $folder, 300, 300);
+
+                $image = new Covers;
+                $image->setName($file);
+                $game->addCover($image);
+            }
+
+            $game->setUser($this->getUser());
+            $slug = $slugger->slug($game->getTitle());
+            $game->setSlug($slug);
+            $game->setUpdatedAt(new \DateTimeImmutable());
+            $gamesRepository->save($game, true);
 
             $this->addFlash('info', 'Le jeu a bien été modifié');
 
@@ -100,8 +138,8 @@ class GamesController extends AbstractController
         }
 
         return $this->render('admin/games/edit.html.twig', [
-            'games' => $games,
-            'formGame' => $formGame
+            'games' => $game,
+            'formGame' => $formGame->createView()
         ]);
     }
 
