@@ -214,7 +214,6 @@ class Games
             $this->covers->add($cover);
             $cover->setGames($this);
         }
-
         return $this;
     }
 
@@ -226,7 +225,6 @@ class Games
                 $cover->setGames(null);
             }
         }
-
         return $this;
     }
 

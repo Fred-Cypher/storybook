@@ -45,6 +45,7 @@ class PictureService
                 throw new Exception('Format d\'image incorrect');
         }
 
+        // Recadrage
         // Récupération dimensions
         $imageWidth = $pictureInfos[0];
         $imageHeight = $pictureInfos[1];
@@ -95,10 +96,10 @@ class PictureService
 
             $path = $this->params->get('images_directory') . $folder;
 
-            $mini = $path . '/miniatures/' . $width . 'x' . $height . '-' . $file;
+            $miniature = $path . '/miniatures/' . $width . 'x' . $height . '-' . $file;
 
-            if(file_exists($mini)){
-                unlink($mini);
+            if(file_exists($miniature)){
+                unlink($miniature);
                 $success = true;
             }
 

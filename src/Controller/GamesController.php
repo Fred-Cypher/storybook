@@ -44,11 +44,11 @@ class GamesController extends AbstractController
         $formGame->handleRequest($request);
 
         if($formGame->isSubmitted() && $formGame->isValid()){
+            // Récupération image
             $covers = $formGame->get('covers')->getData();
-            // images = covers
 
             foreach($covers as $cover){
-                $folder = 'games';
+                $folder = 'games'; // Dossier destination
                 $file = $pictureService->add($cover, $folder, 300, 300);
 
                 $image = new Covers;
@@ -56,11 +56,11 @@ class GamesController extends AbstractController
                 $game->addCover($image);
             }
             
-
+            // Récupération utilisateur et génération slug
             $game->setUser($this->getUser());
             $slug = $slugger->slug($game->getTitle());
             $game->setSlug($slug);
-            /* $game->setCover($fichier);*/
+
             $manager->persist($game);
             $manager->flush();
 
@@ -87,16 +87,19 @@ class GamesController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', $games);
 
+        // Récupération requête
         $data = json_decode($request->getContent(), true);
 
         if($this->isCsrfTokenValid('delete' . $cover->getId(), $data['_token'])){
+            // Token valide
+            // Récupération nom image
             $coverName = $cover->getName();
 
             if($pictureService->delete($coverName, 'games', 300, 300)){
                 $manager->remove($cover);
                 $manager->flush();
 
-                return new JsonResponse(['success' => true], 400);
+                return new JsonResponse(['success' => true], 200);
             }
             return new JsonResponse(['error' => 'Erreur de suppression'], 400);
         }

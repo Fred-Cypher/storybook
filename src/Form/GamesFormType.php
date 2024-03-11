@@ -35,7 +35,7 @@ class GamesFormType extends AbstractType
                 'label' => 'Développeur / Éditeur : '
             ])
             ->add('covers', FileType::class, [
-            'label' => 'Image de la jaquette du jeu : ',
+            'label' => 'Jaquette du jeu : ',
             'multiple' => true,
             'mapped' => false,
             'required' => true,
