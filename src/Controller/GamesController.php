@@ -83,9 +83,9 @@ class GamesController extends AbstractController
     }
 
     #[Route('/admin/delete/cover/{id}', name: 'delete_cover', methods: ['DELETE'])]
-    public function deleteCover(Covers $cover, Request $request, EntityManagerInterface $manager, PictureService $pictureService, Games $games): JsonResponse
+    public function deleteCover(Covers $cover, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $games);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         // Récupération requête
         $data = json_decode($request->getContent(), true);
