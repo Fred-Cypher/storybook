@@ -32,6 +32,20 @@ class GamesController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/index', name: 'admin_index')]
+    public function adminIndex(GamesRepository $gamesRepository): Response
+    {
+        return $this->render('/admin/index.html.twig');
+    }
+
+    #[Route('/admin/games_list', name: 'admin_games_list')]
+    public function list(GamesRepository $gamesRepository)
+    {
+        return $this->render('admin/games/list.html.twig', [
+            'games' => $gamesRepository->findAll(),
+        ]);
+    }
+
     #[Route('/admin/new', name: 'new')]
     public function newGame(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {

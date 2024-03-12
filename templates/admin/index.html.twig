@@ -4,18 +4,34 @@
 
 {% block body %}
     <main class="container">
-        <section class="row">
-            <div class="col-md-4">
-            <a href="{{ path('app_tales_new') }}" class="nav-link">Conte</a>
-                Lien vers enregistrement conte
+        <section class="row p-3 border border-dark m-3">
+            <span class="h3">Enregistrement nouveau conte ou nouveau jeu </span>
+            <div class="col-md-4 ">
+                <a type="button" href="{{ path('app_tales_new') }}" class="nav-link btn btn-outline-secondary">Conte</a>
+                    Lien vers enregistrement conte
             </div>
             <div class="col-md-4">
-            <a href="{{ path('app_games_new') }}" class="nav-link">Jeu ancien</a>
+                <a type="button" href="{{ path('app_games_new') }}" class="nav-link btn btn-outline-secondary">Jeu ancien</a>
                 Lien vers enregistrement jeu vidéo ancien
             </div>
             <div class="col-md-4">
-            <a href="{{ path('app_games_newRecent') }}" class="nav-link">Jeu récent</a>
+                <a type="button" href="{{ path('app_games_newRecent') }}" class="nav-link btn btn-outline-secondary">Jeu récent</a>
                 Lien vers enregistrement jeu vidéo récent
+            </div>
+        </section>
+        <section class="row p-3 border border-dark m-3">
+        <span class="h3">Modification ou suppression</span>
+            <div class="col-md-4 ">
+                <a type="button" href="{{ path('app_tales_new') }}" class="nav-link btn btn-outline-secondary">Conte</a>
+                    Lien vers modification ou suppression conte
+            </div>
+            <div class="col-md-4">
+                <a type="button" href="{{ path('app_games_admin_games_list') }}" class="nav-link btn btn-outline-secondary">Jeu ancien</a>
+                Lien vers modification ou suppression jeu vidéo ancien
+            </div>
+            <div class="col-md-4">
+                <a type="button" href="{{ path('app_games_newRecent') }}" class="nav-link btn btn-outline-secondary">Jeu récent</a>
+                Lien vers modification ou suppression jeu vidéo récent
             </div>
         </section>
     </main>
