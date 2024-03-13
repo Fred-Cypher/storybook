@@ -88,13 +88,19 @@ class GamesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/delete/{id}', name: 'delete_game')]
-    public function deleteGame(Games $games): Response
+    #[Route('/admin/delete/{id}', name: 'delete_game', methods: ['POST'])]
+    public function deleteGame(Games $game, Request $request, GamesRepository $gamesRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $games);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $game);
+
+        if($this->isCsrfTokenValid('delete' . $game->getId(), $request->request->get('_token'))) {
+            $gamesRepository->remove($game, true);
+        }
+        $this->addFlash('success', 'Le jeu a bien été supprimé');
 
         return $this->render('admin/index.html.twig');
     }
+
 
     #[Route('/admin/delete/cover/{id}', name: 'delete_cover', methods: ['DELETE'])]
     public function deleteCover(Covers $cover, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
