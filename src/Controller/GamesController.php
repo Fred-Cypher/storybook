@@ -7,6 +7,7 @@ use App\Entity\Games;
 use App\Entity\Illustrations;
 use App\Entity\RecentGames;
 use App\Form\EditGameFormType;
+use App\Form\EditRecentGameFormType;
 use App\Form\GamesFormType;
 use App\Form\RecentGamesFormType;
 use App\Repository\GamesRepository;
@@ -157,7 +158,7 @@ class GamesController extends AbstractController
 
             $this->addFlash('info', 'Le jeu a bien été modifié');
 
-            return $this->redirectToRoute('app_games_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/games/edit.html.twig', [
@@ -166,7 +167,15 @@ class GamesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/new_recent', name: 'newRecent')]
+    #[Route('/admin/recent_games_list', name: 'admin_recent_games_list')]
+    public function listRecent(RecentGamesRepository $recentGamesRepository)
+    {
+        return $this->render('admin/recentGames/list.html.twig', [
+            'recentGames' => $recentGamesRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/admin/new_recent', name: 'new_recent')]
     public function newRecentGame(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -202,6 +211,82 @@ class GamesController extends AbstractController
 
         return $this->render('admin/recentGames/new.html.twig', [
             'formRecent' => $formRecent->createView()
+        ]);
+    }
+
+    #[Route('/admin/delete_recent/{id}', name: 'delete_recent_game', methods: ['POST'])]
+    public function deleteRecentGame(RecentGames $recentGame, Request $request, RecentGamesRepository $recentGamesRepository): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $recentGame);
+
+        if ($this->isCsrfTokenValid('delete' . $recentGame->getId(), $request->request->get('_token'))) {
+            $recentGamesRepository->remove($recentGame, true);
+        }
+        $this->addFlash('success', 'Le jeu a bien été supprimé');
+
+        return $this->render('admin/index.html.twig');
+    }
+
+
+    #[Route('/admin/delete/illustration/{id}', name: 'delete_illustration', methods: ['DELETE'])]
+    public function deleteIllustration(Illustrations $illustration, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // Récupération requête
+        $data = json_decode($request->getContent(), true);
+
+        if ($this->isCsrfTokenValid('delete' . $illustration->getId(), $data['_token'])) {
+            // Token valide
+            // Récupération nom image
+            $illustrationName = $illustration->getName();
+
+            if ($pictureService->delete($illustrationName, 'illustrations', 300, 300)) {
+                $manager->remove($illustration);
+                $manager->flush();
+
+                return new JsonResponse(['success' => true], 200);
+            }
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+        }
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
+
+    #[Route('/admin/edit_recent/{id}', name: 'edit_recent_game', methods: ['GET', 'POST'])]
+    public function editRecentGame(Request $request, RecentGames $recentGame, RecentGamesRepository $recentGamesRepository, PictureService $pictureService, SluggerInterface $slugger): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $formRecentGame = $this->createForm(EditRecentGameFormType::class, $recentGame);
+        $formRecentGame->handleRequest($request);
+
+        if ($formRecentGame->isSubmitted() && $formRecentGame->isValid()) {
+
+            $illustrations = $formRecentGame->get('illustrations')->getData();
+            foreach ($illustrations as $illustration) {
+                $folder = 'illustrations';
+                $file = $pictureService->add($illustration, $folder, 300, 300);
+
+                $image = new Illustrations;
+                $image->setName($file);
+                $recentGame->addIllustration($image);
+            }
+
+            $recentGame->setUser($this->getUser());
+            $slug = $slugger->slug($recentGame->getTitle());
+            $recentGame->setSlug($slug);
+            $recentGame->setUpdatedAt(new \DateTimeImmutable());
+            $recentGamesRepository->save($recentGame, true);
+
+            $this->addFlash('info', 'Le jeu a bien été modifié');
+
+            return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/recentGames/edit.html.twig', [
+            'recentGames' => $recentGame,
+            'formRecentGame' => $formRecentGame->createView()
         ]);
     }
 

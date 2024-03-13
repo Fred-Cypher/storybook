@@ -21,6 +21,24 @@ class RecentGamesRepository extends ServiceEntityRepository
         parent::__construct($registry, RecentGames::class);
     }
 
+    public function save(RecentGames $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(RecentGames $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }  
+
 //    /**
 //     * @return RecentGames[] Returns an array of RecentGames objects
 //     */
