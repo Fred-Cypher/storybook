@@ -1,38 +1,66 @@
-<header class="container">
-    <nav>A insérer : 
-    Date 
-    <h1>Contes et divers textes</h1>
-    Liste déroulante textes
-    Liste déroulante dessins
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a href="{{ path('app_main') }}" class="nav-link">Accueil</a>
-            </li>
-        </ul>
-        {% if app.user %}
-            {% if is_granted ('ROLE_ADMIN') %}
-                <ul class="navbar-nav ms-auto">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid align-items-end">
+            <div class="row col-12 col-md-3 justify-content-center">
+                {% include 'parts/_clock.html.twig' %}
+                <ul class="navbar-nav justify-content-center">
                     <li class="nav-item">
-                        <a href="{{ path('app_admin_index') }}" class="nav-link">Administration</a>
+                        <a href="{{ path('app_main') }}" class="nav-link">Accueil</a>
                     </li>
                 </ul>
-            {% endif %}
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="{{ path('app_profile_index') }}" class="nav-link">Profil</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
-                </li>
-            </ul>
-        {% else %}
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="{{ path('app_login') }}" class="nav-link">Connexion</a>
-                </li>
-            </ul>
-        {% endif %}
+            </div>
+            <div class="col-12 col-md-6 text-center">
+                <h1>Contes et textes divers</h1>
+                <div class="navbar-nav">
+                    <ul class="nav w-100 justify-content-center flex-column flex-md-row">
+                    
+                        <li class="nav-item">Liste déroulante contes</li>
+                        <li class="nav-item">Liste déroulante dessins</li>
+                    </ul>
+                </div>
+            </div>
+            <nav class="navbar text-center">
+                <div class="container-fluid">
+                    <button class="navbar-toogler btn btn-light bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#connexionUser" aria-controls="connexionUser" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                    </button>
+                    <div class="collapse navbar-collapse" id="connexionUser">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="connexionUserMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {% if app.user %}
+                                        {{ app.user.nickname }}
+                                    {% else %}
+                                        <span>Accès utilisateur</span>
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="connexionUserMenuLink">
+                                    {% if app.user %}
+                                        {% if is_granted ('ROLE_ADMIN') %}
+                                            <li>
+                                                <a href="{{ path('app_admin_index') }}" class="dropdown-item">Administration du site</a>
+                                            </li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        {% endif %}
+                                        <li>
+                                            <a href="{{ path('app_profile_index') }}" class="dropdown-item">Profil</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('app_logout') }}" class='dropdown-item'>Déconnecter</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ path('app_login') }}" class="dropdown-item">Connexion</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </nav>
 </header>

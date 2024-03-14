@@ -34,7 +34,7 @@ class GamesController extends AbstractController
     }
 
     #[Route('/admin/index', name: 'admin_index')]
-    public function adminIndex(GamesRepository $gamesRepository): Response
+    public function adminIndex(): Response
     {
         return $this->render('/admin/index.html.twig');
     }
