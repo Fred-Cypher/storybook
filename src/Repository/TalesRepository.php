@@ -21,6 +21,24 @@ class TalesRepository extends ServiceEntityRepository
         parent::__construct($registry, Tales::class);
     }
 
+    public function save(Tales $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Tales $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Tales[] Returns an array of Tales objects
 //     */

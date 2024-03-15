@@ -44,7 +44,7 @@ class Tales
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\OneToMany(targetEntity: Drawings::class, mappedBy: 'tales', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Drawings::class, mappedBy: 'tales', orphanRemoval: true, cascade: ['persist'])]
     private Collection $drawings;
 
     public function __construct()
@@ -181,7 +181,6 @@ class Tales
             $this->drawings[] = $drawing;
             $drawing->setTales($this);
         }
-
         return $this;
     }
 

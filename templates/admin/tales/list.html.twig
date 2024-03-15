@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration des contes{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row mt-5">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Id</th>
+                        <th>Titre</th>
+                        <th>Dessin</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody> 
+                        {% for tale in tales %}
+                            <tr>
+                                <td>{{ tale.id }}</td>
+                                <td>{{ tale.title }}</td>
+                                <td><img src="{{ asset('assets/uploads/tales/miniatures/300x300-' ~ tale.drawings[0].name) }}" class="mini" alt="Dessin d'illustration du conte"></td>
+                                <td class="text-wrap">
+                                    <a href="{{ path('app_tales_edit_tale', {'id': tale.id}) }}" class="btn btn-outline-warning">Modifier</a>
+                                    <a href="{{ path('app_tales_delete_tale', {'id': tale.id}) }}" class="btn btn-outline-danger">{{ include('admin/tales/_delete_form.html.twig') }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+{% endblock %}
