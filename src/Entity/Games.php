@@ -59,7 +59,7 @@ class Games
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
-        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
         $this->covers = new ArrayCollection();
     }
 

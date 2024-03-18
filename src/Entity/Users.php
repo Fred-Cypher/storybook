@@ -49,12 +49,16 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: RecentGames::class)]
     private Collection $recentGames;
 
+    #[ORM\OneToMany(targetEntity: Resume::class, mappedBy: 'user')]
+    private Collection $resumes;
+
     public function __construct()
     {
         $this->tales = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
         $this->games = new ArrayCollection();
         $this->recentGames = new ArrayCollection();
+        $this->resumes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +251,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($recentGame->getUser() === $this) {
                 $recentGame->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Resume>
+     */
+    public function getResumes(): Collection
+    {
+        return $this->resumes;
+    }
+
+    public function addResume(Resume $resume): static
+    {
+        if (!$this->resumes->contains($resume)) {
+            $this->resumes->add($resume);
+            $resume->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResume(Resume $resume): static
+    {
+        if ($this->resumes->removeElement($resume)) {
+            // set the owning side to null (unless already changed)
+            if ($resume->getUser() === $this) {
+                $resume->setUser(null);
             }
         }
 

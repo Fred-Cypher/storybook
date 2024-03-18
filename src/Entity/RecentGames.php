@@ -53,7 +53,7 @@ class RecentGames
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
-        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
         $this->illustrations = new ArrayCollection();
     }
 

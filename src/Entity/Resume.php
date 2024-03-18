@@ -2,41 +2,35 @@
 
 namespace App\Entity;
 
-use App\Repository\TalesRepository;
+use App\Repository\ResumeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TalesRepository::class)]
-class Tales
+#[ORM\Entity(repositoryClass: ResumeRepository::class)]
+class Resume
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tales')]
+    #[ORM\ManyToOne(inversedBy: 'resumes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
 
-    #[ORM\Column(length: 400, nullable: true)]
-    private ?string $explanation = null;
-
-    #[ORM\Column(length: 500)]
-    private ?string $digest = null;
-
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $content = null;
+    private ?string $hobbies = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $caption = null;
+    private ?string $legend = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
@@ -44,14 +38,14 @@ class Tales
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\OneToMany(targetEntity: Drawings::class, mappedBy: 'tales', orphanRemoval: true, cascade: ['persist'])]
-    private Collection $drawings;
+    #[ORM\OneToMany(targetEntity: Portraits::class, mappedBy:'resume', orphanRemoval: true, cascade: ['persist'])]
+    private Collection $portraits;
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
-        $this->drawings = new ArrayCollection();
+        $this->portraits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,50 +89,26 @@ class Tales
         return $this;
     }
 
-    public function getExplanation(): ?string
+    public function getHobbies(): ?string
     {
-        return $this->explanation;
+        return $this->hobbies;
     }
 
-    public function setExplanation(?string $explanation): static
+    public function setHobbies(string $hobbies): static
     {
-        $this->explanation = $explanation;
+        $this->hobbies = $hobbies;
 
         return $this;
     }
 
-    public function getDigest(): ?string
+    public function getLegend(): ?string
     {
-        return $this->digest;
+        return $this->legend;
     }
 
-    public function setDigest(string $digest): static
+    public function setLegend(string $legend): static
     {
-        $this->digest = $digest;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): static
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function getCaption(): ?string
-    {
-        return $this->caption;
-    }
-
-    public function setCaption(?string $caption): static
-    {
-        $this->caption = $caption;
+        $this->legend = $legend;
 
         return $this;
     }
@@ -168,28 +138,29 @@ class Tales
     }
 
     /**
-     * @return Collection|Drawings[]
+     * @return Collection<int, Portraits>
      */
-    public function getDrawings(): Collection
+    public function getPortraits(): Collection
     {
-        return $this->drawings;
+        return $this->portraits;
     }
 
-    public function addDrawing(Drawings $drawing): self
+    public function addPortrait(Portraits $portrait): static
     {
-        if (!$this->drawings->contains($drawing)) {
-            $this->drawings[] = $drawing;
-            $drawing->setTales($this);
+        if (!$this->portraits->contains($portrait)) {
+            $this->portraits->add($portrait);
+            $portrait->setResume($this);
         }
+
         return $this;
     }
 
-    public function removeDrawing(Drawings $drawing): static
+    public function removePortrait(Portraits $portrait): static
     {
-        if ($this->drawings->removeElement($drawing)) {
+        if ($this->portraits->removeElement($portrait)) {
             // set the owning side to null (unless already changed)
-            if ($drawing->getTales() === $this) {
-                $drawing->setTales(null);
+            if ($portrait->getResume() === $this) {
+                $portrait->setResume(null);
             }
         }
 
