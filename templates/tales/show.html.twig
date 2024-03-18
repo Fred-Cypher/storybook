@@ -5,7 +5,17 @@
 {% block body %}
 <main class="container">
     <section>
-        <h2>Titre du conte</h2>
+        <h2>{{ tales.title }}</h2>
+        <p>{{ tales.content }}</p>
+        <p class="text-center">
+            {% for drawing in tales.drawings %}
+                <img src="{{ asset('assets/uploads/tales/' ~ drawing.name) }}" class="card-img-top drawing" alt="Dessin d'inllustration du conte">
+            {% endfor %}
+        </p>
+        <p class="text-center backTo">
+            <a href="{{ path('app_tales_index') }}" class="btn btn-secondary">Retour à la liste de contes</a>
+        </p>
+        
     </section>
 </main>
 {% endblock %}

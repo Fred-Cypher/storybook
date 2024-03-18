@@ -3,19 +3,17 @@
         <div class="container-fluid align-items-end">
             <div class="row col-12 col-md-3 justify-content-center">
                 {% include 'parts/_clock.html.twig' %}
-                <ul class="navbar-nav justify-content-center">
-                    <li class="nav-item">
-                        <a href="{{ path('app_main') }}" class="nav-link">Accueil</a>
-                    </li>
-                </ul>
             </div>
             <div class="col-12 col-md-6 text-center">
                 <h1>Contes et textes divers</h1>
-                <div class="navbar-nav">
-                    <ul class="nav w-100 justify-content-center flex-column flex-md-row">
-                    
-                        <li class="nav-item">Liste déroulante contes</li>
-                        <li class="nav-item">Liste déroulante dessins</li>
+                <div class="navbar navbar-expand d-flex justify-content-around">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item px-3">
+                            <a href="{{ path('app_main') }}" class="nav-link">Accueil</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a href="{{ path('app_tales_index') }}" class="nav-link">Contes</a>
+                        </li>
                     </ul>
                 </div>
             </div>

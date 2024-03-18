@@ -12,7 +12,10 @@
             </div>
             <div class="col-12">
                 {% for tale in tales %}
-                    <p>{{ tale.title }}</p>
+                    <p>
+                        <img src="{{ asset('assets/images/plume.svg') }}" class="plume" alt="Plume">
+                        <a href="{{ path('app_tales_show', {'slug': tale.slug}) }}">{{ tale.title }}</a>
+                    </p>
                 {% endfor %}
             </div>
         </section>
