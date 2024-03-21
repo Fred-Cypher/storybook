@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - Enregistrement Page d'accueil{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12 h3">Ajouter la page d'accueil</div>
+            <div class="col-12 vh-100">
+                {{ form_start(formResume) }}
+                    {{ form_row(formResume.title) }}
+                    {{ form_row(formResume.hobbies) }}
+                    {{ form_row(formResume.portraits) }}
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-dark">Enregistrer la page d'accueil</button>
+                        </div>
+                    {{ form_end(formResume) }}
+            </div>
+        </section>
+    </main>
+{% endblock %}

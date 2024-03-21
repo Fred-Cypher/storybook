@@ -36,12 +36,16 @@ class GamesController extends AbstractController
     #[Route('/admin/index', name: 'admin_index')]
     public function adminIndex(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         return $this->render('/admin/index.html.twig');
     }
 
     #[Route('/admin/games_list', name: 'admin_games_list')]
     public function list(GamesRepository $gamesRepository)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('admin/games/list.html.twig', [
             'games' => $gamesRepository->findAll(),
         ]);
@@ -139,7 +143,6 @@ class GamesController extends AbstractController
         if ($formGame->isSubmitted() && $formGame->isValid()) {
 
             $covers = $formGame->get('covers')->getData();
-            // images = covers
 
             foreach ($covers as $cover) {
                 $folder = 'games';

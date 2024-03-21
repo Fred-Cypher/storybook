@@ -36,14 +36,15 @@
         </section>
         <section class="row p-3 border border-dark m-3">
             <span class="h3">Gestion de la présentation</span>
-            <div class="col-md-4 ">
-                <a type="button" href="" class="nav-link btn btn-outline-secondary">Gestion des portraits IA</a>
-                    Lien vers modification ou suppression images IA
-            </div>
             <div class="col-md-4">
-                <a type="button" href="" class="nav-link btn btn-outline-secondary">Gestion du texte de présentation</a>
-                Lien vers modification ou suppression texte présentation
+                <a type="button" href="{{ path('app_resume_new') }}" class="nav-link btn btn-outline-secondary">Création page Accueil</a>
+                Lien vers création page accueil
+            </div>
+            <div class="col-md-4 ">
+                <a type="button" href="{{ path('app_resume_edit_resume', {id: 1}) }}" class="nav-link btn btn-outline-secondary">Gestion Accueil</a>
+                    Lien vers modification ou suppression contenu page accueil
             </div>
         </section>
     </main>
 {% endblock %}
+

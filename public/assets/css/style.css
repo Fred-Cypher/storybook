@@ -53,3 +53,17 @@ footer{
     width: 1.5rem;
     height: 1.5rem;
 }
+
+.portrait{
+    max-width: 20rem;
+    max-height: 20rem;
+}
+
+.carouselSize{
+    width: 20rem;
+}
+
+.chevron{
+    background-color: rgba(245, 245, 245, 0.384);
+    height: 3rem;
+}

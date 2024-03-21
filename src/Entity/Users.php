@@ -50,7 +50,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $recentGames;
 
     #[ORM\OneToMany(targetEntity: Resume::class, mappedBy: 'user')]
-    private Collection $resumes;
+    private Collection $resume;
 
     public function __construct()
     {
@@ -58,7 +58,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->created_at = new \DateTimeImmutable();
         $this->games = new ArrayCollection();
         $this->recentGames = new ArrayCollection();
-        $this->resumes = new ArrayCollection();
+        $this->resume = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -260,15 +260,15 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Resume>
      */
-    public function getResumes(): Collection
+    public function getResume(): Collection
     {
-        return $this->resumes;
+        return $this->resume;
     }
 
     public function addResume(Resume $resume): static
     {
-        if (!$this->resumes->contains($resume)) {
-            $this->resumes->add($resume);
+        if (!$this->resume->contains($resume)) {
+            $this->resume->add($resume);
             $resume->setUser($this);
         }
 
@@ -277,7 +277,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeResume(Resume $resume): static
     {
-        if ($this->resumes->removeElement($resume)) {
+        if ($this->resume->removeElement($resume)) {
             // set the owning side to null (unless already changed)
             if ($resume->getUser() === $this) {
                 $resume->setUser(null);

@@ -30,6 +30,8 @@ class TalesController extends AbstractController
     #[Route('/admin/tales_list', name: 'admin_tales_list')]
     public function listTales(TalesRepository $talesRepository)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         return $this->render('admin/tales/list.html.twig', [
             'tales' => $talesRepository->findAll(),
         ]);

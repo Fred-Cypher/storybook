@@ -6,16 +6,46 @@
 
     <main class="container">
         <div class="row">   
-            <section class="col-9">
-                <h1>Recueil de contes et divers textes</h1>
-                <p>
-                    <h2>Présentation rapide</h2>
-                    <div>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Id sed provident sit amet neque, delectus ipsum voluptas harum saepe error illo laboriosam nemo, 
-                        placeat porro velit veritatis magni dolore obcaecati?
+            <section class="col-12  m-auto">
+                <h2>Recueil de contes et divers textes</h2>
+                <article class="col-12 row">
+                    <div class="col-12 col-md-6">
+                        {% for resume in resumes %}
+                            <div class="col-md-6 m-auto">
+                                <div id="carouselPortrait" class="carousel slide carousel-dark carouselSize m-auto" data-bs-ride="carousel" data-bs-interval="false">
+                                    <div class="carousel-indicators">
+                                        {% for iteration in 1..resume.portraits|length %}
+                                            <button type="button" data-bs-target="#carouselPortrait" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="carousel-inner">
+                                        {% for portrait in resume.portraits %}
+                                            <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
+                                                <img src="{{ asset('assets/uploads/portraitia/' ~ portrait.name) }}" class="portrait d-block m-auto" alt="Portrait généré par l'IA">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button class="carousel-control-prev chevron rounded-circle my-auto" type="button" data-bs-target="#carouselPortrait" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next chevron rounded-circle my-auto" type="button" data-bs-target="#carouselPortrait" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                </p>
+                    <div class="col-12 col-md-6 my-auto">
+                        Explication portraits IA
+                    </div>
+                </article>
+                <article class="col-12">
+                    {% for resume in resumes %}
+                        <div>{{ resume.hobbies }}</div>
+                    {% endfor %}
+                </article>
             </section>
         </div>
     </main>

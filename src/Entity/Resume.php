@@ -22,15 +22,12 @@ class Resume
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\ManyToOne(inversedBy: 'resumes')]
+    #[ORM\ManyToOne(inversedBy: 'resume')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $hobbies = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $legend = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
@@ -97,18 +94,6 @@ class Resume
     public function setHobbies(string $hobbies): static
     {
         $this->hobbies = $hobbies;
-
-        return $this;
-    }
-
-    public function getLegend(): ?string
-    {
-        return $this->legend;
-    }
-
-    public function setLegend(string $legend): static
-    {
-        $this->legend = $legend;
 
         return $this;
     }

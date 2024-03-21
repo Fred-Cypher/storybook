@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - Modification Conte{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="col">
+            <div class="col-12 h3">Modifier la page d'accueil</div>
+            <div class="col-12 vh-100">
+                {{ form_start(formResume) }}
+                    {{ form_row(formResume.title) }}
+                    {{ form_row(formResume.hobbies) }}
+                    {% if app.request.attributes.get('_route') == 'app_resume_edit_resume' %}
+                        <div class="my-2">Portrait(s) actuel(s):</div>
+                        {% for portrait in resume.portraits %}
+                            <div>
+                                <img src="{{ asset('assets/uploads/portraitia/miniatures/300x300-' ~ portrait.name) }}" class="card-img-top thumbnail" alt="Portrait généré par l'IA">
+                                <a href="{{ path('app_resume_delete_portrait', {id: portrait.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ portrait.id) }}" class="btn btn-danger">Supprimer l'image</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_row(formResume.portraits) }}
+                        <div class="text-center backTo">
+                            <button type="submit" class="btn btn-outline-dark">Enregistrer la modification</button>
+                        </div>
+                    {{ form_end(formResume) }}
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/covers.js') }}" defer></script>
+{% endblock %}
