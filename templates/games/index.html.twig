@@ -24,9 +24,6 @@
                         <div class="card-body">
                             <div class="card-title h5">{{ game.title }}</div>
                             <div class="card-title h6">{{ game.subtitle }}</div>
-                            <p class="card-text">
-                            {{ game.editor }}
-                            </p>
                             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ game.slug }}">Voir la fiche du jeu</button>
                         </div>
                     </div>
@@ -35,13 +32,55 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="gameModalLabel">{{ game.title }} - {{ game.subtitle }}</h5>
+                                    
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body row col-12">
                                     <div class="col-md-5">
                                         <img src="{{ asset('assets/uploads/games/' ~ game.covers[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
                                     </div>
-                                    <div class="col-md-7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptas animi, eum earum quaerat possimus, laudantium error consequuntur doloremque veniam laboriosam aperiam facere vero architecto dolorum repudiandae tenetur corrupti quia.</div>
+                                    <div class="col-md-7">
+                                        <div>
+                                            <span class="titleList">Éditeurs / Développeurs : </span>
+                                            <div class="ps-4">{{ game.editor }}</div>
+                                        </div>
+                                        <div>
+                                            <span class="titleList">Genre : </span>
+                                            <div class="ps-4">{{ game.category }}</div>
+                                        </div>
+                                        <div>
+                                            <span class="titleList">Support : </span> 
+                                            <div class="ps-4">{{ game.support }}</div>
+                                        </div>
+                                        {% if game.configuration %}
+                                            <div>
+                                                <span class="titleList">Configuration minimale : </span>
+                                                <div class="ps-4">{{ game.configuration }}</div>
+                                            </div>
+                                        {% endif %}
+                                        {% if game.pegi %}
+                                            <div>
+                                                <span class="titleList">Classification Pegi :</span> 
+                                                <div class="ps-4">
+                                                    {% if game.pegi == 3  %}
+                                                        <img src="{{ asset('assets/images/pegi/3.jpg') }}" alt="Pegi 3" class="miniPegi">
+                                                    {% elseif game.pegi == 7 %}
+                                                        <img src="{{ asset('assets/images/pegi/7.jpg') }}" alt="Pegi 7" class="miniPegi">
+                                                    {% elseif game.pegi == 12 %}
+                                                        <img src="{{ asset('assets/images/pegi/12.jpg') }}" alt="Pegi 12" class="miniPegi">
+                                                    {% elseif game.pegi == 16 %}
+                                                        <img src="{{ asset('assets/images/pegi/16.jpg') }}" alt="Pegi 16" class="miniPegi">
+                                                    {% elseif game.pegi == 18 %}
+                                                        <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        <div>
+                                            <span class="titleList">Résumé : </span>
+                                            <div class="ps-4">{{ game.digest }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -51,29 +90,6 @@
                     </div>
                 {% endfor %}
             </div>
-            
-            <!-- Button trigger modal 
-            <a type="link" class="btn" data-bs-toggle="modal" data-bs-target="#gameModal">
-            Lien demo modal
-            </a>-->
-
-            <!-- Modal 
-            <div class="modal fade" id="gameModal" tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="gameModalLabel">Titre du jeu vidéo - Sous-titre</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </section>
 
         <section class="row">
@@ -86,9 +102,6 @@
                         <div class="card-body">
                             <div class="card-title h5">{{ recentgame.title }}</div>
                             <div class="card-title h6">{{ recentgame.subtitle }}</div>
-                            <p class="card-text">
-                            {{ recentgame.editor }}
-                            </p>
                             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ recentgame.slug }}">Voir la fiche du jeu</button>
                         </div>
                     </div>
@@ -103,7 +116,37 @@
                                     <div class="col-md-5"> 
                                         <img src="{{ asset('assets/uploads/illustrations/' ~ recentgame.illustrations[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
                                     </div>
-                                    <div class="col-md-7">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore rerum dolor eaque excepturi magnam, minima optio consequatur nulla alias! Corporis exercitationem consectetur nemo quisquam a quaerat eveniet commodi suscipit modi!
+                                    <div class="col-md-7">
+                                        <div>
+                                            <span class="titleList">Éditeurs / Développeurs : </span>
+                                            <div class="ps-4">{{ recentgame.editor }}</div>
+                                        </div>
+                                        <div>
+                                            <span class="titleList">Genre : </span>
+                                            <div class="ps-4">{{ recentgame.category }}</div>
+                                        </div>
+                                        {% if recentgame.pegi %}
+                                            <div>
+                                                <span class="titleList">Classification Pegi :</span> 
+                                                <div class="ps-4">
+                                                    {% if recentgame.pegi == 3  %}
+                                                        <img src="{{ asset('assets/images/pegi/3.jpg') }}" alt="Pegi 3" class="miniPegi">
+                                                    {% elseif recentgame.pegi == 7 %}
+                                                        <img src="{{ asset('assets/images/pegi/7.jpg') }}" alt="Pegi 7" class="miniPegi">
+                                                    {% elseif recentgame.pegi == 12 %}
+                                                        <img src="{{ asset('assets/images/pegi/12.jpg') }}" alt="Pegi 12" class="miniPegi">
+                                                    {% elseif recentgame.pegi == 16 %}
+                                                        <img src="{{ asset('assets/images/pegi/16.jpg') }}" alt="Pegi 16" class="miniPegi">
+                                                    {% elseif recentgame.pegi == 18 %}
+                                                        <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        <div>
+                                            <span class="titleList">Résumé : </span>
+                                            <div class="ps-4">{{ recentgame.digest }}</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -115,5 +158,8 @@
                 {% endfor %}
             </div>
         </section>
+        <div class="backTo text-center">
+            <a href="{{ path('app_main') }}" class="btn btn-secondary">Retour à l'accueil</a>
+        </div>
     </main>
 {% endblock %}

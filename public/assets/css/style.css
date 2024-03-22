@@ -45,6 +45,11 @@ footer{
     height: 3rem;
 }
 
+.miniPegi{
+    width: 2rem;
+    height: 2rem;
+}
+
 .drawing{
     max-width: 30rem;
 }
@@ -52,6 +57,10 @@ footer{
 .plume{
     width: 1.5rem;
     height: 1.5rem;
+}
+
+.titleList{
+    font-weight: bold;
 }
 
 .portrait{
