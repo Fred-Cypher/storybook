@@ -43,7 +43,7 @@
                 </article>
                 <article class="col-12">
                     {% for resume in resumes %}
-                        <div>{{ resume.hobbies }}</div>
+                        <div>{{ resume.hobbies|nl2br }}</div>
                     {% endfor %}
                 </article>
             </section>

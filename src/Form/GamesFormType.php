@@ -43,29 +43,42 @@ class GamesFormType extends AbstractType
                 'class' => 'form-control mt-2'
             ],
             ])
-            /*->add('cover', options: [
-                'attr' => [
-                    'class' => 'form-control mt-2'
-                ],
-                'label' => 'Image de jaquette : '
-            ])*/
             ->add('category', options: [
             'attr' => [
                 'class' => 'form-control mt-2'
             ],
-            'label' => 'Catégorie(s) : '
-        ])
+            'label' => 'Catégorie(s) / genre : (Action, Aventure,  Point\'n Click, Réflexion, Ludo-éducatif, RPG, Plate-forme, Roman graphique, Indépendant'
+            ])
+            /*->add('category', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-check my-2 mx-3 d-flex justify-content-around'
+                ],
+                'label' => 'Catégorie(s) / genre : ',
+                'choices' => [
+                    'Action' => 'Action',
+                    'Aventure' => 'Aventure',
+                    'Point\'n click' => 'Point\' click',
+                    'Reflexion' => 'Réflexion',
+                    'Ludo-educatif' => 'Ludo-éducatif',
+                    'RPG' => 'RPG',
+                    'Plate-forme' => 'Plate-forme',
+                    'Roman graphique' => 'Roman graphique',
+                    'Independant' => 'Indépendant'
+                ],
+                'multiple' => true,
+                'expanded' => true
+            ])*/
             ->add('pegi', options: [
-            'attr' => [
-                'class' => 'form-control mt-2 col-md-2'
-            ],
-            'label' => 'Âge minimal recommandé : '
-        ])
+                'attr' => [
+                    'class' => 'form-control mt-2 col-md-2'
+                ],
+                'label' => 'Âge minimal recommandé : '
+            ])
             ->add('support', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check my-2 mx-3 d-flex justify-content-around col-md-2'
                 ], 
-                'label' => 'Support',
+                'label' => 'Support : ',
                 'choices' => [
                     'PC' => 'PC',
                     'DS' => 'DS / 3DS'
@@ -74,13 +87,12 @@ class GamesFormType extends AbstractType
                 'expanded' => true
             ])
             
-            /**'form-check d-flex justify-content-evenly align-items-center col-sm-12 col-md-8 col-lg-7',*/
             ->add('configuration', options: [
             'attr' => [
                 'class' => 'form-control mt-2'
             ],
             'label' => 'Configuration minimale : '
-        ])
+            ])
             ->add('digest', options: [
             'attr' => [
                 'class' => 'form-control mt-2'

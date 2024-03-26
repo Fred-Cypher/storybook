@@ -13,10 +13,6 @@
         <section class="row">
             <h3>Jeux anciens</h3>
             <span>Jeux essentiellement sur PC, mais également sur DS et 3DS</span>
-            <div class="col-md-4 col-lg-3">
-            <!-- Boucle -->
-                
-            </div>
             <div class="col-12 row justify-content-center p-3">
                 {% for game in games %}
                     <div class="card col-md-3 m-2">
@@ -46,7 +42,35 @@
                                         </div>
                                         <div>
                                             <span class="titleList">Genre : </span>
-                                            <div class="ps-4">{{ game.category }}</div>
+                                            <div class="ps-4">{{ game.category }} <br>
+                                                {% if game.category|contains('Aventure') %}
+                                                    <span class="badge bg-danger">Aventure</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Action') %}
+                                                    <span class="badge bg-danger">Action</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Point\'n Click') %}
+                                                    <span class="badge bg-secondary">Point'n Click</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Réflexion') %}
+                                                    <span class="badge bg-success">Réflexion</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Ludo-éducatif') %}
+                                                    <span class="badge bg-success">Ludo-éducatif</span>
+                                                {% endif %}
+                                                {% if game.category|contains('RPG') %}
+                                                    <span class="badge bg-primary">RPG</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Roman graphique') %}
+                                                    <span class="badge bg-dark">Roman graphique</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Plate-forme') %}
+                                                    <span class="badge bg-warning">Plate-forme</span>
+                                                {% endif %}
+                                                {% if game.category|contains('Indépendant') %}
+                                                    <span class="badge bg-info">Indépendant</span>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                         <div>
                                             <span class="titleList">Support : </span> 
@@ -123,7 +147,35 @@
                                         </div>
                                         <div>
                                             <span class="titleList">Genre : </span>
-                                            <div class="ps-4">{{ recentgame.category }}</div>
+                                            <div class="ps-4">{{ recentgame.category }} <br>
+                                                {% if recentgame.category|contains('Aventure') %}
+                                                    <span class="badge bg-danger">Aventure</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Action') %}
+                                                    <span class="badge bg-danger">Action</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Point\'n Click') %}
+                                                    <span class="badge bg-secondary">Point'n Click</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Réflexion') %}
+                                                    <span class="badge bg-success">Réflexion</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Ludo-éducatif') %}
+                                                    <span class="badge bg-success">Ludo-éducatif</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('RPG') %}
+                                                    <span class="badge bg-primary">RPG</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Roman graphique') %}
+                                                    <span class="badge bg-dark">Roman graphique</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Plate-forme') %}
+                                                    <span class="badge bg-warning">Plate-forme</span>
+                                                {% endif %}
+                                                {% if recentgame.category|contains('Indépendant') %}
+                                                    <span class="badge bg-info">Indépendant</span>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                         {% if recentgame.pegi %}
                                             <div>
@@ -145,7 +197,7 @@
                                         {% endif %}
                                         <div>
                                             <span class="titleList">Résumé : </span>
-                                            <div class="ps-4">{{ recentgame.digest }}</div>
+                                            <div class="ps-4">{{ recentgame.digest|nl2br }}</div>
                                         </div>
                                     </div>
                                 </div>
