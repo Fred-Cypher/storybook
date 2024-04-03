@@ -6,10 +6,10 @@
 <main class="container">
     <section>
         <h2>{{ tales.title }}</h2>
-        <p>{{ tales.content }}</p>
+        <p>{{ tales.content|nl2br }}</p>
         <p class="text-center">
             {% for drawing in tales.drawings %}
-                <img src="{{ asset('assets/uploads/tales/' ~ drawing.name) }}" class="card-img-top drawing" alt="Dessin d'inllustration du conte">
+                <img src="{{ asset('assets/uploads/tales/' ~ drawing.name) }}" class="drawing" alt="Dessin d'inllustration du conte">
             {% endfor %}
         </p>
         <p class="text-center backTo">
