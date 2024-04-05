@@ -68,6 +68,12 @@ class GamesFormType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])*/
+            ->add('year', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2 col-md-2'
+                ],
+                'label' => 'Année de sortie du jeu : '
+            ])
             ->add('pegi', options: [
                 'attr' => [
                     'class' => 'form-control mt-2 col-md-2'
@@ -86,12 +92,17 @@ class GamesFormType extends AbstractType
                 'multiple' => false,
                 'expanded' => true
             ])
-            
             ->add('configuration', options: [
             'attr' => [
                 'class' => 'form-control mt-2'
             ],
             'label' => 'Configuration minimale : '
+            ])
+            ->add('notes', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2 col-md-2'
+                ],
+                'label' => 'Notes sur le jeu : '
             ])
             ->add('digest', options: [
             'attr' => [

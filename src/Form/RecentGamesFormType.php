@@ -54,11 +54,23 @@ class RecentGamesFormType extends AbstractType
                 ],
                 'label' => 'Catégorie(s) : '
             ])
+            ->add('year', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2 col-md-2'
+                ],
+                'label' => 'Année de sortie du jeu : '
+            ])
             ->add('pegi', options: [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
                 'label' => 'Âge minimum recommandé : '
+            ])
+            ->add('notes', options: [
+                'attr' => [
+                    'class' => 'form-control mt-2 col-md-2'
+                ],
+                'label' => 'Notes sur le jeu : '
             ])
             ->add('digest', options: [
                 'attr' => [

@@ -12,7 +12,9 @@
                     {{ form_row(formRecentGame.subtitle) }}
                     {{ form_row(formRecentGame.editor) }}
                     {{ form_row(formRecentGame.category) }}
+                    {{ form_row(formRecentGame.year) }}
                     {{ form_row(formRecentGame.pegi) }}
+                    {{ form_row(formRecentGame.notes) }}
                     {{ form_row(formRecentGame.digest) }}
                     {% if app.request.attributes.get('_route') == 'app_games_edit_recent_game' %}
                         <div class="my-2">Jaquette actuelle :</div>

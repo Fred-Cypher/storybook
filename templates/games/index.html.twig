@@ -15,7 +15,7 @@
             <span>Jeux essentiellement sur PC, mais également sur DS et 3DS</span>
             <div class="col-12 row justify-content-center p-3">
                 {% for game in games %}
-                    <div class="card col-md-3 m-2 pt-2">
+                    <div class="card col-md-3 col-xxl-2 m-2 pt-2">
                         <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail m-auto" alt="Jaquette du jeu">
                         <div class="card-body">
                             <div class="card-title h5">{{ game.title }}</div>
@@ -45,7 +45,7 @@
                                                 <div class="carousel-inner">
                                                     {% for cover in game.covers %}
                                                         <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
-                                                            <img src="{{ asset('assets/uploads/games/' ~ cover.name) }}" class="portrait d-block m-auto" alt="Jaquette du jeu">
+                                                            <img src="{{ asset('assets/uploads/games/' ~ cover.name) }}" class="cover d-block m-auto" alt="Jaquette du jeu">
                                                         </div>
                                                     {% endfor %}
                                                 </div>
@@ -62,7 +62,7 @@
                                             <img src="{{ asset('assets/uploads/games/' ~ game.covers[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
                                         {% endif %}
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 ps-4">
                                         <div>
                                             <span class="titleList">Éditeurs / Développeurs : </span>
                                             <div class="ps-4">{{ game.editor }}</div>
@@ -109,6 +109,12 @@
                                                 <div class="ps-4">{{ game.configuration }}</div>
                                             </div>
                                         {% endif %}
+                                        {% if game.year %}
+                                            <div>
+                                                <span class="titleList">Année de sortie du jeu : </span>
+                                                <div class="ps-4">{{ game.year }}</div>
+                                            </div>
+                                        {% endif %}
                                         {% if game.pegi %}
                                             <div>
                                                 <span class="titleList">Classification Pegi :</span> 
@@ -125,6 +131,12 @@
                                                         <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
                                                     {% endif %}
                                                 </div>
+                                            </div>
+                                        {% endif %}
+                                        {% if game.notes %}
+                                            <div>
+                                                <span class="titleList">Notes sur le jeu : </span>
+                                                <div class="ps-4">{{ game.notes }}</div>
                                             </div>
                                         {% endif %}
                                         <div>
@@ -148,7 +160,7 @@
             <span>Jeux PC exclusivement</span>
             <div class="col-12 row justify-content-center p-3">
                 {% for recentgame in recentgames %}
-                    <div class="card col-md-3 m-2 pt-2">
+                    <div class="card col-md-3 col-xxl-2 m-2 pt-2">
                         <img src="{{ asset('assets/uploads/illustrations/miniatures/300x300-' ~ recentgame.illustrations[0].name) }}" class="card-img-top thumbnail m-auto" alt="Jaquette du jeu">
                         <div class="card-body">
                             <div class="card-title h5">{{ recentgame.title }}</div>
@@ -191,7 +203,7 @@
                                                 </button>
                                             </div>
                                         {% else %}
-                                            <img src="{{ asset('assets/uploads/illustrations/' ~ recentgame.illustrations[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
+                                            <img src="{{ asset('assets/uploads/illustrations/' ~ recentgame.illustrations[0].name) }}" class="card-img-top portrait" alt="Jaquette du jeu">
                                         {% endif %}
                                     </div>
                                     <div class="col-md-7 ps-4">
@@ -231,6 +243,12 @@
                                                 {% endif %}
                                             </div>
                                         </div>
+                                        {% if recentgame.year %}
+                                            <div>
+                                                <span class="titleList">Année de sortie du jeu : </span>
+                                                <div class="ps-4">{{ recentgame.year }}</div>
+                                            </div>
+                                        {% endif %}
                                         {% if recentgame.pegi %}
                                             <div>
                                                 <span class="titleList">Classification Pegi :</span> 
@@ -247,6 +265,12 @@
                                                         <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
                                                     {% endif %}
                                                 </div>
+                                            </div>
+                                        {% endif %}
+                                        {% if recentgame.notes %}
+                                            <div>
+                                                <span class="titleList">Notes sur le jeu : </span>
+                                                <div class="ps-4">{{ recentgame.notes }}</div>
                                             </div>
                                         {% endif %}
                                         <div>
