@@ -34,7 +34,7 @@
     display: inline-block;
     vertical-align: text-top;
     white-space: nowrap;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .DPDCth{
@@ -46,7 +46,15 @@
     min-width: 0.6em
 }
 
-.DPDCtm::before,.DPDCts::before{
+.points{
+    display: inline-block;
+    vertical-align: text-top;
+    font-size: 1.2rem;
+    opacity: .72;
+    filter: alpha(opacity=72)
+}
+
+/*.DPDCtm::before,.DPDCts::before{
     display: inline-block;
     content: ':';
     vertical-align: middle;
@@ -55,7 +63,7 @@
     text-align: center;
     opacity: .72;
     filter: alpha(opacity=72)
-}
+}*/
 
 .DPDCt12{
     display: inline-block;
@@ -66,7 +74,7 @@
 }
 
 .DPDCdt{
-    margin-right: 0.48rem
+    margin-left: 2rem;
 }
 
 .DPDCtn{
@@ -99,7 +107,7 @@
 } /* widget width, padding, background, border, rounded corners */
 
 .DPDCh{
-    color: #007DBF;
+    color: #413021;
     font-weight: normal
 } /* headline color, font-weight*/
 

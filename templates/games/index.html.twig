@@ -15,13 +15,13 @@
             <span>Jeux essentiellement sur PC, mais également sur DS et 3DS</span>
             <div class="col-12 row justify-content-center p-3">
                 {% for game in games %}
-                    <div class="card col-md-3 col-xxl-2 m-2 pt-2">
+                    <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
                         <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail m-auto" alt="Jaquette du jeu">
-                        <div class="card-body">
+                        <div class="card-body position-relative">
                             <div class="card-title h5">{{ game.title }}</div>
                             <div class="card-title h6">{{ game.subtitle }}</div>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ game.slug }}">Voir la fiche du jeu</button>
+                            <div class="gameButton ps-2">
+                                <button type="button" class="btn btn-outline-dark text-center" data-bs-toggle="modal" data-bs-target="#{{ game.slug }}">Voir la fiche du jeu</button>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,6 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="gameModalLabel">{{ game.title }} - {{ game.subtitle }}</h5>
-                                    
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body row col-12">
@@ -160,12 +159,12 @@
             <span>Jeux PC exclusivement</span>
             <div class="col-12 row justify-content-center p-3">
                 {% for recentgame in recentgames %}
-                    <div class="card col-md-3 col-xxl-2 m-2 pt-2">
+                    <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
                         <img src="{{ asset('assets/uploads/illustrations/miniatures/300x300-' ~ recentgame.illustrations[0].name) }}" class="card-img-top thumbnail m-auto" alt="Jaquette du jeu">
                         <div class="card-body">
                             <div class="card-title h5">{{ recentgame.title }}</div>
                             <div class="card-title h6">{{ recentgame.subtitle }}</div>
-                            <div class="text-center">
+                            <div class="gameButton pe-3">
                                 <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ recentgame.slug }}">Voir la fiche du jeu</button>
                             </div>
                         </div>

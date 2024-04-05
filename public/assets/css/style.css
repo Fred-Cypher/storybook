@@ -31,6 +31,19 @@ footer{
     height: 6rem;
 }
 
+.gameCard{
+    height: 20rem;
+}
+
+.gameButton{
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-left: -1.2rem;
+}
+
 .thumbnail{
     width: 10rem;
     height: 10rem;
