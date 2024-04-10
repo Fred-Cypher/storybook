@@ -29,7 +29,7 @@ class EditResumeFormType extends AbstractType
                 'label' => 'Portrait généré par l\'IA : ',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ]

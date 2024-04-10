@@ -31,3 +31,4 @@ resume.md
 ###< symfony/asset-mapper ###
 
 diversCodes.md
+templates/main/tests.html.twig

@@ -19,7 +19,6 @@ class AppExtension extends AbstractExtension
         // Cherche la position de la première occurence dans une chaîne
         $position = strpos($string, $word); 
         
-
         if($position !== false) {
             // Retourne un segment de chaîne 
             return substr($string, $position);
