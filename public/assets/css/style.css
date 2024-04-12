@@ -72,8 +72,14 @@ footer{
     height: 1.5rem;
 }
 
-.titleList{
+.titleList, 
+.charactere{
     font-weight: bold;
+}
+
+.bookTitle{
+    font-style: italic;
+    font-size: 1.1rem;
 }
 
 .portrait{

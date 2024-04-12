@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recueil de contes{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 
     <main class="container">
         <div class="row">   
-            <section class="col-12  m-auto">
+            <section class="col-12 m-auto">
                 <h2>Recueil de contes et divers textes</h2>
+                <p class="p-3">Ce site rassemble les divers petits textes que j'ai écrits il y a déjà quelques années, 
+                qu'ils soient sous forme de conte ou qu'ils soient le résultat d'une animation sur un forum.
+                </p>
                 <article class="col-12 row">
-                    <div class="col-12 col-md-6">
+                    <span class="h4">Portrait rapide</span>
+                    <div class="col-12 col-md-6 mt-3">
                         {% for resume in resumes %}
                             <div class="col-md-6 m-auto">
                                 <div id="carouselPortrait" class="carousel slide carousel-dark carouselSize m-auto" data-bs-ride="carousel" data-bs-interval="false">
@@ -38,15 +42,19 @@
                         {% endfor %}
                     </div>
                     <div class="col-12 col-md-6 my-auto">
-                        Explication portraits IA
+                        Explication portraits générés par une IA
                     </div>
                 </article>
-                <article class="col-12">
+                <article class="col-12 p-3">
                     {% for resume in resumes %}
                         <div>{{ resume.hobbies|raw|nl2br}}</div>
                     {% endfor %}
                 </article>
             </section>
+            <div class="backTo col-12 mt-3 text-center">
+                <a href="{{ path('app_tales_index') }}" class="btn btn-secondary me-2">Accès aux contes</a>
+                <a href="{{ path('app_games_index') }}" class="btn btn-secondary ms-2">Accès aux jeux</a>
+            </div>
         </div>
     </main>
 
