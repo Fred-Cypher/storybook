@@ -26,7 +26,7 @@
 }
 
 .DPDCt{
-    line-height: 1.5;
+    line-height: 1;
     text-align: center;
 }
 
@@ -34,7 +34,7 @@
     display: inline-block;
     vertical-align: text-top;
     white-space: nowrap;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .DPDCth{
@@ -43,13 +43,13 @@
 }
 
 .DPDCtm,.DPDCts{
-    min-width: 0.6em
+    min-width: 0.8em
 }
 
 .points{
     display: inline-block;
     vertical-align: text-top;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     opacity: .72;
     filter: alpha(opacity=72)
 }
@@ -108,7 +108,7 @@
 
 .DPDCh{
     color: #413021;
-    font-weight: normal
+    font-weight: normal;
 } /* headline color, font-weight*/
 
 .DPDCt,.DPDCd{
@@ -129,12 +129,12 @@
 } /* time font-size */
 
 .DPDCh{
-    font-size: 1rem
+    font-size: 0.8rem
 } /* headline */
 
 .DPDCd{
-    font-size: .9rem;
-    margin-top: 0.5rem;
+    font-size: .7rem;
+    margin-top: 0.2rem;
 }/* date font-size */
 
 .dayspediasvg{

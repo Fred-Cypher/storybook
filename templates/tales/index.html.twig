@@ -12,15 +12,15 @@
             </div>
             <div class="col-12">
                 {% for tale in tales %}
-                    <p>
-                        <img src="{{ asset('assets/images/plume.svg') }}" class="plume" alt="Plume">
+                    <p><!-- Plume multocolore générée grâce à l'IA : Image Creator from Designer -->
+                        <img src="{{ asset('assets/images/logo/logo2-400.png') }}" class="plume" alt="Plume">
                         <a href="{{ path('app_tales_show', {'slug': tale.slug}) }}">{{ tale.title }}</a>
                     </p>
                 {% endfor %}
             </div>
         </section>
         <div class="backTo text-center">
-            <a href="{{ path('app_main') }}" class="btn btn-secondary">Retour à l'accueil</a>
+            <a href="{{ path('app_main') }}" class="btn btn-secondary"><img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore"> Retour à l'accueil</a>
         </div>
     </main>
 {% endblock %}
