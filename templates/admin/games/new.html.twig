@@ -20,10 +20,13 @@
                     {{ form_row(formGame.notes) }}
                     {{ form_row(formGame.digest) }}
 
-                    <div class="text-center">
+                    <div class="text-center mt-3">
                         <button type="submit" class="btn btn-outline-dark">Enregistrer le jeu vidéo ancien</button>
                     </div>
                 {{ form_end(formGame) }}
+            </div>
+            <div class="backTo">
+                <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
             </div>
         </section>
     </main>

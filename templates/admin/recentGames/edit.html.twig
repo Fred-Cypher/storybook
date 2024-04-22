@@ -26,12 +26,15 @@
                         {% endfor %}
                     {% endif %}
                     {{ form_row(formRecentGame.illustrations) }}
-                    <div class="text-center">
+                    <div class="text-center mt-3">
                         <button type="submit" class="btn btn-outline-dark">Enregistrer la modification</button>
                     </div>
                 {{ form_end(formRecentGame) }}
             </div>
         </section>
+        <div class="backTo">
+            <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
+        </div>
     </main>
 {% endblock %}
 

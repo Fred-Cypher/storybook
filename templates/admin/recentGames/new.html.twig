@@ -18,10 +18,13 @@
                     {{ form_row(formRecent.notes) }}
                     {{ form_row(formRecent.digest) }}
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-dark">Enregistrer le jeu vidéo récent</button>
+                        <button type="submit" class="btn btn-outline-dark mt-3">Enregistrer le jeu vidéo récent</button>
                     </div>
                 {{ form_end(formRecent) }}
             </div>
         </section>
+        <div class="backTo">
+            <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
+        </div>
     </main>
 {% endblock %}

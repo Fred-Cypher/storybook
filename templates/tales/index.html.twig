@@ -3,17 +3,17 @@
 {% block title %}Liste des contes{% endblock %}
 
 {% block body %}
-    <main class="container mt-5">
-        <section class="row">
-            <div class="col-12">
-                <h2>Liste des contes</h2>
-                <p>Contes et petits textes que j'ai écrits il y a quelques années.</p>
-                <p>Cliquez sur le titre pour lire le conte. </p>
+    <main class="container">
+        <section class="row mt-3">
+            <div class="col-10 m-auto">
+                <p class="h2">Liste des contes</p>
+                <p class="mt-2">Contes et petits textes que j'ai écrits il y a quelques années.</p>
+                <p class="small">Cliquez sur le titre pour lire le conte. </p>
             </div>
-            <div class="col-12">
+            <div class="col-10 m-auto">
                 {% for tale in tales %}
-                    <p><!-- Plume multocolore générée grâce à l'IA : Image Creator from Designer -->
-                        <img src="{{ asset('assets/images/logo/logo2-400.png') }}" class="plume" alt="Plume">
+                    <p><!-- Plume multicolore générée grâce à l'IA : Image Creator from Designer -->
+                        <img src="{{ asset('assets/images/logo/plume400.png') }}" class="plume" alt="Plume">
                         <a href="{{ path('app_tales_show', {'slug': tale.slug}) }}">{{ tale.title }}</a>
                     </p>
                 {% endfor %}

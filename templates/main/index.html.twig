@@ -6,8 +6,8 @@
 
     <main class="container">
         <div class="row">   
-            <section class="col-12 m-auto">
-                <h2 class="mt-3">Recueil de contes et divers textes</h2>
+            <section class="col-10 m-auto mt-3">
+                <p class="mt-3 h2">Recueil de contes et divers textes</p>
                 <p class="p-3">Ce site rassemble les divers petits textes que j'ai écrits il y a déjà quelques années, 
                 qu'ils soient sous forme de conte ou qu'ils soient le résultat d'une animation sur un forum. <br>
                 J'y ai mis aussi quelques images générées grâce à une IA (logo, icones, portraits), et une partie regroupant les jeux que j'ai, que j'ai faits et aimés.
@@ -26,7 +26,7 @@
                                     <div class="carousel-inner">
                                         {% for portrait in resume.portraits %}
                                             <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
-                                                <img src="{{ asset('assets/uploads/portraitia/' ~ portrait.name) }}" class="portrait d-block m-auto" alt="Portrait généré par l'IA">
+                                                <img src="{{ asset('assets/uploads/portraitia/' ~ portrait.name) }}" class="portrait d-block m-auto rounded-3" alt="Portrait généré par l'IA">
                                             </div>
                                         {% endfor %}
                                     </div>
@@ -54,7 +54,7 @@
             </section>
             <div class="backTo col-12 mt-3 text-center">
                 <a href="{{ path('app_tales_index') }}" class="btn btn-secondary me-2"><img src="{{ asset('assets/images/logo/logo2-400.png') }}" class="plume" alt="Plume"> Accès aux contes</a>
-                <a href="{{ path('app_games_index') }}" class="btn btn-secondary ms-2">Accès aux jeux</a>
+                <a href="{{ path('app_games_index') }}" class="btn btn-secondary ms-2"><img src="{{ asset('assets/images/logo/manette400.png') }}" class="plume" alt="Plume"> Accès aux jeux</a>
             </div>
         </div>
     </main>

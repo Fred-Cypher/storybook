@@ -3,292 +3,302 @@
 {% block title %}Jeux vidéo{% endblock %}
 
 {% block body %}
-    <main class="container vh-100 m-auto">
-        
-        <div class="col-12">
-            <h2>Mes jeux vidéos</h2>
-            <div>Vous trouverez ici un aperçu des jeux vidéos que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</div>
-        </div> 
+    <main class="container">
+        <div class="row">
+            <div class="col-10 m-auto mt-3">
+                <p class="h2">Mes jeux vidéos</p>
+                <p>Vous trouverez ici un aperçu des jeux vidéos que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</p>
+            </div> 
 
-        <section class="row">
-            <h3>Jeux anciens</h3>
-            <span>Jeux essentiellement sur PC, mais également sur DS et 3DS</span>
-            <div class="col-12 row justify-content-center p-3">
-                {% for game in games %}
-                    <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
-                        <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail m-auto" alt="Jaquette du jeu">
-                        <div class="card-body position-relative">
-                            <div class="card-title h5">{{ game.title }}</div>
-                            <div class="card-title h6">{{ game.subtitle }}</div>
-                            <div class="gameButton ps-2">
-                                <button type="button" class="btn btn-outline-dark text-center" data-bs-toggle="modal" data-bs-target="#{{ game.slug }}">Voir la fiche du jeu</button>
+            <section class="col-12 m-auto mt-3">
+                <div class="col-10 m-auto">
+                    <p class="h3">Jeux anciens</p>
+                    <p>Jeux essentiellement sur PC, mais également sur DS et 3DS</p>
+                </div>
+                <div class="col-12 row justify-content-center p-3">
+                    {% for game in games %}
+                        <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
+                        <!-- Logos de PC et de DS générées grâce à l'IA : Image Creator from Designer -->
+                        {% if game.support|contains('PC') %}<img src="{{ asset('assets/images/logo/PC400.png') }}" class="plume" alt="Logo d'un PC">{% endif %}
+                        {% if game.support|contains('DS') %}<img src="{{ asset('assets/images/logo/DS400-2.png') }}" class="plume" alt="Logo d'une console Nintendo DS">{% endif %}
+                            <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail m-auto rounded-3" alt="Jaquette du jeu">
+                            <div class="card-body position-relative">
+                                <div class="card-title h5">{{ game.title }}</div>
+                                <div class="card-title h6 text-truncate">{{ game.subtitle }}</div>
+                                <div class="gameButton ps-2">
+                                    <button type="button" class="btn btn-outline-dark text-center" data-bs-toggle="modal" data-bs-target="#{{ game.slug }}">Voir la fiche du jeu</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal fade" id="{{ game.slug }}" tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="gameModalLabel">{{ game.title }} - {{ game.subtitle }}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body row col-12">
-                                    <div class="col-md-5">
-                                        {% if game.covers|length > 1 %}
-                                            <div id="carouselCovers" class="carousel slide carousel-dark carouselSize m-auto" data-bs-ride="carousel" data-bs-interval="false">
-                                                <div class="carousel-indicators">
-                                                    {% for iteration in 1..game.covers|length %}
-                                                        <button type="button" data-bs-target="#carouselCovers" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
-                                                    {% endfor %}
-                                                </div>
-                                                <div class="carousel-inner">
-                                                    {% for cover in game.covers %}
-                                                        <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
-                                                            <img src="{{ asset('assets/uploads/games/' ~ cover.name) }}" class="cover d-block m-auto" alt="Jaquette du jeu">
-                                                        </div>
-                                                    {% endfor %}
-                                                </div>
-                                                <button class="carousel-control-prev chevron rounded-circle my-auto" type="button" data-bs-target="#carouselCovers" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next chevron rounded-circle my-auto" type="button" data-bs-target="#carouselCovers" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
-                                            </div>
-                                        {% else %}
-                                            <img src="{{ asset('assets/uploads/games/' ~ game.covers[0].name) }}" class="card-img-top cover" alt="Jaquette du jeu">
-                                        {% endif %}
+                        <div class="modal fade" id="{{ game.slug }}" tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="gameModalLabel">{{ game.title }} - {{ game.subtitle }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="col-md-7 ps-4">
-                                        <div>
-                                            <span class="titleList">Éditeurs / Développeurs : </span>
-                                            <div class="ps-4">{{ game.editor }}</div>
+                                    <div class="modal-body row col-12">
+                                        <div class="col-md-5">
+                                            {% if game.covers|length > 1 %}
+                                                <div id="carouselCovers" class="carousel slide carousel-dark carouselSize m-auto" data-bs-ride="carousel" data-bs-interval="false">
+                                                    <div class="carousel-indicators">
+                                                        {% for iteration in 1..game.covers|length %}
+                                                            <button type="button" data-bs-target="#carouselCovers" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="carousel-inner">
+                                                        {% for cover in game.covers %}
+                                                            <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
+                                                                <img src="{{ asset('assets/uploads/games/' ~ cover.name) }}" class="cover d-block m-auto rounded-3" alt="Jaquette du jeu">
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <button class="carousel-control-prev chevron rounded-circle my-auto" type="button" data-bs-target="#carouselCovers" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                    </button>
+                                                    <button class="carousel-control-next chevron rounded-circle my-auto" type="button" data-bs-target="#carouselCovers" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                    </button>
+                                                </div>
+                                            {% else %}
+                                                <img src="{{ asset('assets/uploads/games/' ~ game.covers[0].name) }}" class="card-img-top cover rounded-3" alt="Jaquette du jeu">
+                                            {% endif %}
                                         </div>
-                                        <div>
-                                            <span class="titleList">Genre : </span>
-                                            <div class="ps-4">{{ game.category }} <br>
-                                                {% if game.category|contains('Aventure') %}
-                                                    <span class="badge bg-danger">Aventure</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Action') %}
-                                                    <span class="badge bg-danger">Action</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Point\'n Click') %}
-                                                    <span class="badge bg-secondary">Point'n Click</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Réflexion') %}
-                                                    <span class="badge bg-success">Réflexion</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Ludo-éducatif') %}
-                                                    <span class="badge bg-success">Ludo-éducatif</span>
-                                                {% endif %}
-                                                {% if game.category|contains('RPG') %}
-                                                    <span class="badge bg-primary">RPG</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Roman graphique') %}
-                                                    <span class="badge bg-dark">Roman graphique</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Plate-forme') %}
-                                                    <span class="badge bg-warning">Plate-forme</span>
-                                                {% endif %}
-                                                {% if game.category|contains('Indépendant') %}
-                                                    <span class="badge bg-info">Indépendant</span>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="titleList">Support : </span> 
-                                            <div class="ps-4">{{ game.support }}</div>
-                                        </div>
-                                        {% if game.configuration %}
+                                        <div class="col-md-7 ps-4">
                                             <div>
-                                                <span class="titleList">Configuration minimale : </span>
-                                                <div class="ps-4">{{ game.configuration }}</div>
+                                                <span class="titleList">Éditeurs / Développeurs : </span>
+                                                <div class="ps-4">{{ game.editor }}</div>
                                             </div>
-                                        {% endif %}
-                                        {% if game.year %}
                                             <div>
-                                                <span class="titleList">Année de sortie du jeu : </span>
-                                                <div class="ps-4">{{ game.year }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {% if game.pegi %}
-                                            <div>
-                                                <span class="titleList">Classification Pegi :</span> 
-                                                <div class="ps-4">
-                                                    {% if game.pegi == 3  %}
-                                                        <img src="{{ asset('assets/images/pegi/3.jpg') }}" alt="Pegi 3" class="miniPegi">
-                                                    {% elseif game.pegi == 7 %}
-                                                        <img src="{{ asset('assets/images/pegi/7.jpg') }}" alt="Pegi 7" class="miniPegi">
-                                                    {% elseif game.pegi == 12 %}
-                                                        <img src="{{ asset('assets/images/pegi/12.jpg') }}" alt="Pegi 12" class="miniPegi">
-                                                    {% elseif game.pegi == 16 %}
-                                                        <img src="{{ asset('assets/images/pegi/16.jpg') }}" alt="Pegi 16" class="miniPegi">
-                                                    {% elseif game.pegi == 18 %}
-                                                        <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
+                                                <span class="titleList">Genre : </span>
+                                                <div class="ps-4">{{ game.category }} <br>
+                                                    {% if game.category|contains('Aventure') %}
+                                                        <span class="badge bg-danger">Aventure</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Action') %}
+                                                        <span class="badge bg-danger">Action</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Point\'n Click') %}
+                                                        <span class="badge bg-secondary">Point'n Click</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Réflexion') %}
+                                                        <span class="badge bg-success">Réflexion</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Ludo-éducatif') %}
+                                                        <span class="badge bg-success">Ludo-éducatif</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('RPG') %}
+                                                        <span class="badge bg-primary">RPG</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Roman graphique') %}
+                                                        <span class="badge bg-dark">Roman graphique</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Plate-forme') %}
+                                                        <span class="badge bg-warning">Plate-forme</span>
+                                                    {% endif %}
+                                                    {% if game.category|contains('Indépendant') %}
+                                                        <span class="badge bg-info">Indépendant</span>
                                                     {% endif %}
                                                 </div>
                                             </div>
-                                        {% endif %}
-                                        {% if game.notes %}
                                             <div>
-                                                <span class="titleList">Notes sur le jeu : </span>
-                                                <div class="ps-4">{{ game.notes }}</div>
+                                                <span class="titleList">Support : </span> 
+                                                <div class="ps-4">{{ game.support }}</div>
                                             </div>
-                                        {% endif %}
-                                        <div>
-                                            <span class="titleList">Résumé : </span>
-                                            <div class="ps-4">{{ game.digest|nl2br }}</div>
+                                            {% if game.configuration %}
+                                                <div>
+                                                    <span class="titleList">Configuration minimale : </span>
+                                                    <div class="ps-4">{{ game.configuration }}</div>
+                                                </div>
+                                            {% endif %}
+                                            {% if game.year %}
+                                                <div>
+                                                    <span class="titleList">Année de sortie du jeu : </span>
+                                                    <div class="ps-4">{{ game.year }}</div>
+                                                </div>
+                                            {% endif %}
+                                            {% if game.pegi %}
+                                                <div>
+                                                    <span class="titleList">Classification Pegi :</span> 
+                                                    <div class="ps-4">
+                                                        {% if game.pegi == 3  %}
+                                                            <img src="{{ asset('assets/images/pegi/3.jpg') }}" alt="Pegi 3" class="miniPegi">
+                                                        {% elseif game.pegi == 7 %}
+                                                            <img src="{{ asset('assets/images/pegi/7.jpg') }}" alt="Pegi 7" class="miniPegi">
+                                                        {% elseif game.pegi == 12 %}
+                                                            <img src="{{ asset('assets/images/pegi/12.jpg') }}" alt="Pegi 12" class="miniPegi">
+                                                        {% elseif game.pegi == 16 %}
+                                                            <img src="{{ asset('assets/images/pegi/16.jpg') }}" alt="Pegi 16" class="miniPegi">
+                                                        {% elseif game.pegi == 18 %}
+                                                            <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            {% if game.notes %}
+                                                <div>
+                                                    <span class="titleList">Notes sur le jeu : </span>
+                                                    <div class="ps-4">{{ game.notes }}</div>
+                                                </div>
+                                            {% endif %}
+                                            <div>
+                                                <span class="titleList">Résumé : </span>
+                                                <div class="ps-4">{{ game.digest|nl2br }}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+                    {% endfor %}
+                </div>
+            </section>
 
-        <section class="row">
-            <h3>Jeux récents</h3>
-            <span>Jeux PC exclusivement</span>
-            <div class="col-12 row justify-content-center p-3">
-                {% for recentgame in recentgames %}
-                    <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
-                        <img src="{{ asset('assets/uploads/illustrations/miniatures/300x300-' ~ recentgame.illustrations[0].name) }}" class="card-img-top thumbnail m-auto" alt="Jaquette du jeu">
-                        <div class="card-body">
-                            <div class="card-title h5">{{ recentgame.title }}</div>
-                            <div class="card-title h6">{{ recentgame.subtitle }}</div>
-                            <div class="gameButton pe-3">
-                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ recentgame.slug }}">Voir la fiche du jeu</button>
+            <section class="col-12 m-auto mt-3">
+                <div class="col-10 m-auto">
+                    <p class="h3">Jeux récents</p>
+                    <p>Jeux PC exclusivement</p>
+                </div>
+                <div class="col-12 row justify-content-center p-3">
+                    {% for recentgame in recentgames %}
+                        <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
+                            <img src="{{ asset('assets/images/logo/PC400.png') }}" class="plume" alt="Logo d'un PC">
+                            <img src="{{ asset('assets/uploads/illustrations/miniatures/300x300-' ~ recentgame.illustrations[0].name) }}" class="card-img-top thumbnail m-auto rounded-3" alt="Jaquette du jeu">
+                            <div class="card-body">
+                                <div class="card-title h5">{{ recentgame.title }}</div>
+                                <div class="card-title h6 text-truncate">{{ recentgame.subtitle }}</div>
+                                <div class="gameButton pe-3">
+                                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#{{ recentgame.slug }}">Voir la fiche du jeu</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal fade" id="{{ recentgame.slug }}" tabindex="-1" aria-labelledby="recentgameModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="recentgameModalLabel">{{ recentgame.title }} - {{ recentgame.subtitle }}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body row col-12">
-                                    <div class="col-md-5"> 
-                                        {% if recentgame.illustrations|length > 1 %}
-                                            <div id="carouselIllustrations" class="carousel slide carousel-dark carouselSize m-auto" data-bs-ride="carousel" data-bs-interval="false">
-                                                <div class="carousel-indicators">
-                                                    {% for iteration in 1..recentgame.illustrations|length %}
-                                                        <button type="button" data-bs-target="#carouselIllustrations" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
-                                                    {% endfor %}
-                                                </div>
-                                                <div class="carousel-inner">
-                                                    {% for illustration in recentgame.illustrations %}
-                                                        <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
-                                                            <img src="{{ asset('assets/uploads/illustrations/' ~ illustration.name) }}" class="portrait d-block m-auto" alt="Illustration du jeu">
-                                                        </div>
-                                                    {% endfor %}
-                                                </div>
-                                                <button class="carousel-control-prev chevron rounded-circle my-auto" type="button" data-bs-target="#carouselIllustrations" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next chevron rounded-circle my-auto" type="button" data-bs-target="#carouselIllustrations" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
-                                            </div>
-                                        {% else %}
-                                            <img src="{{ asset('assets/uploads/illustrations/' ~ recentgame.illustrations[0].name) }}" class="card-img-top portrait" alt="Jaquette du jeu">
-                                        {% endif %}
+                        <div class="modal fade" id="{{ recentgame.slug }}" tabindex="-1" aria-labelledby="recentgameModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="recentgameModalLabel">{{ recentgame.title }} - {{ recentgame.subtitle }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="col-md-7 ps-4">
-                                        <div>
-                                            <span class="titleList">Éditeurs / Développeurs : </span>
-                                            <div class="ps-4">{{ recentgame.editor }}</div>
+                                    <div class="modal-body row col-12">
+                                        <div class="col-md-5"> 
+                                            {% if recentgame.illustrations|length > 1 %}
+                                                <div id="carouselIllustrations" class="carousel slide carousel-dark carouselSize m-auto" data-bs-ride="carousel" data-bs-interval="false">
+                                                    <div class="carousel-indicators">
+                                                        {% for iteration in 1..recentgame.illustrations|length %}
+                                                            <button type="button" data-bs-target="#carouselIllustrations" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="carousel-inner">
+                                                        {% for illustration in recentgame.illustrations %}
+                                                            <div class="carousel-item {{ (loop.first ? 'active' : '') }}">
+                                                                <img src="{{ asset('assets/uploads/illustrations/' ~ illustration.name) }}" class="portrait d-block m-auto rounded-3" alt="Illustration du jeu">
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <button class="carousel-control-prev chevron rounded-circle my-auto" type="button" data-bs-target="#carouselIllustrations" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                    </button>
+                                                    <button class="carousel-control-next chevron rounded-circle my-auto" type="button" data-bs-target="#carouselIllustrations" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                    </button>
+                                                </div>
+                                            {% else %}
+                                                <img src="{{ asset('assets/uploads/illustrations/' ~ recentgame.illustrations[0].name) }}" class="card-img-top portrait rounded-3" alt="Jaquette du jeu">
+                                            {% endif %}
                                         </div>
-                                        <div>
-                                            <span class="titleList">Genre : </span>
-                                            <div class="ps-4">{{ recentgame.category }} <br>
-                                                {% if recentgame.category|contains('Aventure') %}
-                                                    <span class="badge bg-danger">Aventure</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Action') %}
-                                                    <span class="badge bg-danger">Action</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Point\'n Click') %}
-                                                    <span class="badge bg-secondary">Point'n Click</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Réflexion') %}
-                                                    <span class="badge bg-success">Réflexion</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Ludo-éducatif') %}
-                                                    <span class="badge bg-success">Ludo-éducatif</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('RPG') %}
-                                                    <span class="badge bg-primary">RPG</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Roman graphique') %}
-                                                    <span class="badge bg-dark">Roman graphique</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Plate-forme') %}
-                                                    <span class="badge bg-warning">Plate-forme</span>
-                                                {% endif %}
-                                                {% if recentgame.category|contains('Indépendant') %}
-                                                    <span class="badge bg-info">Indépendant</span>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        {% if recentgame.year %}
+                                        <div class="col-md-7 ps-4">
                                             <div>
-                                                <span class="titleList">Année de sortie du jeu : </span>
-                                                <div class="ps-4">{{ recentgame.year }}</div>
+                                                <span class="titleList">Éditeurs / Développeurs : </span>
+                                                <div class="ps-4">{{ recentgame.editor }}</div>
                                             </div>
-                                        {% endif %}
-                                        {% if recentgame.pegi %}
                                             <div>
-                                                <span class="titleList">Classification Pegi :</span> 
-                                                <div class="ps-4">
-                                                    {% if recentgame.pegi == 3  %}
-                                                        <img src="{{ asset('assets/images/pegi/3.jpg') }}" alt="Pegi 3" class="miniPegi">
-                                                    {% elseif recentgame.pegi == 7 %}
-                                                        <img src="{{ asset('assets/images/pegi/7.jpg') }}" alt="Pegi 7" class="miniPegi">
-                                                    {% elseif recentgame.pegi == 12 %}
-                                                        <img src="{{ asset('assets/images/pegi/12.jpg') }}" alt="Pegi 12" class="miniPegi">
-                                                    {% elseif recentgame.pegi == 16 %}
-                                                        <img src="{{ asset('assets/images/pegi/16.jpg') }}" alt="Pegi 16" class="miniPegi">
-                                                    {% elseif recentgame.pegi == 18 %}
-                                                        <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
+                                                <span class="titleList">Genre : </span>
+                                                <div class="ps-4">{{ recentgame.category }} <br>
+                                                    {% if recentgame.category|contains('Aventure') %}
+                                                        <span class="badge bg-danger">Aventure</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Action') %}
+                                                        <span class="badge bg-danger">Action</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Point\'n Click') %}
+                                                        <span class="badge bg-secondary">Point'n Click</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Réflexion') %}
+                                                        <span class="badge bg-success">Réflexion</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Ludo-éducatif') %}
+                                                        <span class="badge bg-success">Ludo-éducatif</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('RPG') %}
+                                                        <span class="badge bg-primary">RPG</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Roman graphique') %}
+                                                        <span class="badge bg-dark">Roman graphique</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Plate-forme') %}
+                                                        <span class="badge bg-warning">Plate-forme</span>
+                                                    {% endif %}
+                                                    {% if recentgame.category|contains('Indépendant') %}
+                                                        <span class="badge bg-info">Indépendant</span>
                                                     {% endif %}
                                                 </div>
                                             </div>
-                                        {% endif %}
-                                        {% if recentgame.notes %}
+                                            {% if recentgame.year %}
+                                                <div>
+                                                    <span class="titleList">Année de sortie du jeu : </span>
+                                                    <div class="ps-4">{{ recentgame.year }}</div>
+                                                </div>
+                                            {% endif %}
+                                            {% if recentgame.pegi %}
+                                                <div>
+                                                    <span class="titleList">Classification Pegi :</span> 
+                                                    <div class="ps-4">
+                                                        {% if recentgame.pegi == 3  %}
+                                                            <img src="{{ asset('assets/images/pegi/3.jpg') }}" alt="Pegi 3" class="miniPegi">
+                                                        {% elseif recentgame.pegi == 7 %}
+                                                            <img src="{{ asset('assets/images/pegi/7.jpg') }}" alt="Pegi 7" class="miniPegi">
+                                                        {% elseif recentgame.pegi == 12 %}
+                                                            <img src="{{ asset('assets/images/pegi/12.jpg') }}" alt="Pegi 12" class="miniPegi">
+                                                        {% elseif recentgame.pegi == 16 %}
+                                                            <img src="{{ asset('assets/images/pegi/16.jpg') }}" alt="Pegi 16" class="miniPegi">
+                                                        {% elseif recentgame.pegi == 18 %}
+                                                            <img src="{{ asset('assets/images/pegi/18.jpg') }}" alt="Pegi 18" class="miniPegi">
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            {% if recentgame.notes %}
+                                                <div>
+                                                    <span class="titleList">Notes sur le jeu : </span>
+                                                    <div class="ps-4">{{ recentgame.notes }}</div>
+                                                </div>
+                                            {% endif %}
                                             <div>
-                                                <span class="titleList">Notes sur le jeu : </span>
-                                                <div class="ps-4">{{ recentgame.notes }}</div>
+                                                <span class="titleList">Résumé : </span>
+                                                <div class="ps-4">{{ recentgame.digest|nl2br }}</div>
                                             </div>
-                                        {% endif %}
-                                        <div>
-                                            <span class="titleList">Résumé : </span>
-                                            <div class="ps-4">{{ recentgame.digest|nl2br }}</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+            </section>
+            <div class="backTo text-center">
+                <a href="{{ path('app_main') }}" class="btn btn-secondary">Retour à l'accueil</a>
             </div>
-        </section>
-        <div class="backTo text-center">
-            <a href="{{ path('app_main') }}" class="btn btn-secondary">Retour à l'accueil</a>
         </div>
+        
     </main>
 {% endblock %}

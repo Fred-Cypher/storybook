@@ -29,11 +29,14 @@
                     {% endif %}
                     {{ form_row(formGame.covers) }}
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-dark">Enregistrer la modification</button>
+                        <button type="submit" class="btn btn-outline-dark mt-3">Enregistrer la modification</button>
                     </div>
                 {{ form_end(formGame) }}
             </div>
         </section>
+        <div class="backTo">
+            <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
+        </div>
     </main>
 {% endblock %}
 
