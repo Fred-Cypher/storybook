@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/profile', name: 'app_profile_')]
 class ProfileController extends AbstractController
 {
+    // Affichage de la page de profil de l'utilisateur
     #[Route('/', name: 'index')]
     public function index(): Response
     {

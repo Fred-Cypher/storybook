@@ -24,6 +24,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/games', name: 'app_games_')]
 class GamesController extends AbstractController
 {
+    // Affichage de la page d'index avec les cartes de présentation des jeux anciens et récents 
     #[Route('/', name: 'index')]
     public function index(GamesRepository $gamesRepository, RecentGamesRepository $recentGamesRepository): Response
     {   
@@ -33,14 +34,7 @@ class GamesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/index', name: 'admin_index')]
-    public function adminIndex(): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        
-        return $this->render('/admin/index.html.twig');
-    }
-
+    // Affichage de liste des jeux anciens à modifier / supprimer
     #[Route('/admin/games_list', name: 'admin_games_list')]
     public function list(GamesRepository $gamesRepository)
     {
@@ -51,19 +45,22 @@ class GamesController extends AbstractController
         ]);
     }
 
+    // Affichage de la page d'enregistrement d'un nouveau jeu ancien
     #[Route('/admin/new', name: 'new')]
     public function newGame(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
+        // Création d'un nouveau jeu 
         $game = new Games();
-
+        // Création du formulaire
         $formGame = $this->createForm(GamesFormType::class, $game);
-
+        // Traitement de la requête du formulaire
         $formGame->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if($formGame->isSubmitted() && $formGame->isValid()){
-            // Récupération image
+            // Récupération image et ajout dans le dossier 'games'
             $covers = $formGame->get('covers')->getData();
 
             foreach($covers as $cover){
@@ -75,7 +72,7 @@ class GamesController extends AbstractController
                 $game->addCover($image);
             }
             
-            // Récupération utilisateur et génération slug
+            // Récupération utilisateur connecté et génération slug
             $game->setUser($this->getUser());
             $slug = $slugger->slug($game->getTitle());
             $game->setSlug($slug);
@@ -93,6 +90,7 @@ class GamesController extends AbstractController
         ]);
     }
 
+    // Suppression d'un jeu ancien
     #[Route('/admin/delete/{id}', name: 'delete_game', methods: ['POST'])]
     public function deleteGame(Games $game, Request $request, GamesRepository $gamesRepository): Response
     {
@@ -106,7 +104,7 @@ class GamesController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
 
-
+    // Suppression des images du jeu ancien du dossier 'games'
     #[Route('/admin/delete/cover/{id}', name: 'delete_cover', methods: ['DELETE'])]
     public function deleteCover(Covers $cover, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
     {
@@ -132,6 +130,7 @@ class GamesController extends AbstractController
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }
 
+    // Affichage de la page de modification d'un jeu ancien
     #[Route('/admin/edit/{id}', name: 'edit_game', methods: ['GET', 'POST'])]
     public function editGame(Request $request, Games $game, GamesRepository $gamesRepository, PictureService $pictureService, SluggerInterface $slugger): Response
     {
@@ -140,8 +139,9 @@ class GamesController extends AbstractController
         $formGame = $this->createForm(EditGameFormType::class, $game);
         $formGame->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if ($formGame->isSubmitted() && $formGame->isValid()) {
-
+            // Récupération image et ajout dans le dossier 'games'
             $covers = $formGame->get('covers')->getData();
 
             foreach ($covers as $cover) {
@@ -170,6 +170,7 @@ class GamesController extends AbstractController
         ]);
     }
 
+    // Affichage de liste des jeux récents à modifier / supprimer
     #[Route('/admin/recent_games_list', name: 'admin_recent_games_list')]
     public function listRecent(RecentGamesRepository $recentGamesRepository)
     {
@@ -178,6 +179,7 @@ class GamesController extends AbstractController
         ]);
     }
 
+    // Affichage de la page d'enregistrement d'un nouveau jeu récent
     #[Route('/admin/new_recent', name: 'new_recent')]
     public function newRecentGame(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {
@@ -189,11 +191,13 @@ class GamesController extends AbstractController
 
         $formRecent->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if ($formRecent->isSubmitted() && $formRecent->isValid()) {
+            // Récupération image et ajout dans le dossier 'illustrations'
             $illustrations = $formRecent->get('illustrations')->getData();
 
             foreach($illustrations as $illustration){
-                $folder = 'illustrations';
+                $folder = 'illustrations'; // Dossier destination
                 $file = $pictureService->add($illustration, $folder, 300, 300);
 
                 $image = new Illustrations;
@@ -201,9 +205,11 @@ class GamesController extends AbstractController
                 $recentGame->addIllustration($image);
             }
 
+            // Récupération utilisateur connecté et génération slug
             $recentGame->setUser($this->getUser());
             $slug = $slugger->slug($recentGame->getTitle());
             $recentGame->setSlug($slug);
+
             $manager->persist($recentGame);
             $manager->flush();
 
@@ -217,6 +223,7 @@ class GamesController extends AbstractController
         ]);
     }
 
+    // Suppression d'un jeu récent
     #[Route('/admin/delete_recent/{id}', name: 'delete_recent_game', methods: ['POST'])]
     public function deleteRecentGame(RecentGames $recentGame, Request $request, RecentGamesRepository $recentGamesRepository): Response
     {
@@ -230,7 +237,7 @@ class GamesController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
 
-
+    // Suppression des images d'un jeu récent du dossier 'illustrations'
     #[Route('/admin/delete/illustration/{id}', name: 'delete_illustration', methods: ['DELETE'])]
     public function deleteIllustration(Illustrations $illustration, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
     {
@@ -256,6 +263,7 @@ class GamesController extends AbstractController
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }
 
+    // Affichage de la page de modification d'un jeu récent
     #[Route('/admin/edit_recent/{id}', name: 'edit_recent_game', methods: ['GET', 'POST'])]
     public function editRecentGame(Request $request, RecentGames $recentGame, RecentGamesRepository $recentGamesRepository, PictureService $pictureService, SluggerInterface $slugger): Response
     {
@@ -264,9 +272,11 @@ class GamesController extends AbstractController
         $formRecentGame = $this->createForm(EditRecentGameFormType::class, $recentGame);
         $formRecentGame->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if ($formRecentGame->isSubmitted() && $formRecentGame->isValid()) {
-
+            // Récupération image et ajout dans la dossier 'illustrations'
             $illustrations = $formRecentGame->get('illustrations')->getData();
+            
             foreach ($illustrations as $illustration) {
                 $folder = 'illustrations';
                 $file = $pictureService->add($illustration, $folder, 300, 300);

@@ -19,14 +19,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/resume', name: 'app_resume_')]
 class ResumeController extends AbstractController
 {
-    #[Route('/', name: 'index')]
-    public function index(ResumeRepository $resumeRepository): Response
-    {
-        return $this->render('resume/index.html.twig', [
-            'resume' => $resumeRepository->findBy(),
-        ]);
-    }
-
+    // Affichage des images de la page d'accueil et des textes
     #[Route('/admin/portraits_list', name: 'admin_portraits_list')]
     public function listPortraits(ResumeRepository $resumeRepository)
     {
@@ -37,6 +30,7 @@ class ResumeController extends AbstractController
         ]);
     }
 
+    // Affichage de la page d'enregistrement de la page d'accueil
     #[Route('/admin/new', name: 'new')]
     public function new(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {
@@ -49,7 +43,7 @@ class ResumeController extends AbstractController
         $formResume->handleRequest($request);
 
         if($formResume->isSubmitted() && $formResume->isValid()){
-            // Récupération image
+            // Récupération images générées via une IA et ajout dans le dossier 'portraitia'
             $portraits = $formResume->get('portraits')->getData();
 
             foreach($portraits as $portrait){
@@ -80,17 +74,21 @@ class ResumeController extends AbstractController
 
     } 
     
+    // Suppression d'un image du portrait
     #[Route('/admin/delete/portrait/{id}', name: 'delete_portrait', methods: ['DELETE'])]
     public function deleteDrawing(Portraits $portrait, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
+        // Récupération du contenu de la requête
         $data = json_decode($request->getContent(), true);
 
         if ($this->isCsrfTokenValid('delete' . $portrait->getId(), $data['_token'])) {
+            // Token valide, récupération du nom de l'image
             $portraitName = $portrait->getName();
 
             if ($pictureService->delete($portraitName, 'portraitia', 300, 300)) {
+                // Suppression de l'image 
                 $manager->remove($portrait);
                 $manager->flush();
 
@@ -101,6 +99,7 @@ class ResumeController extends AbstractController
         return new JsonResponse(['error' => ('Token invalide')], 400);
     }
 
+    // Affichage de la page de modification de la page de présentation
     #[Route('/admin/edit/{id}', name: 'edit_resume', methods: ['GET', 'POST'])]
     public function editResume(Request $request, Resume $resume, ResumeRepository $resumeRepository, PictureService $pictureService, SluggerInterface $slugger): Response
     {
@@ -109,8 +108,9 @@ class ResumeController extends AbstractController
         $formResume = $this->createForm(EditResumeFormType::class, $resume);
         $formResume->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if($formResume->isSubmitted() && $formResume->isValid()){
-
+            // Récupération image et ajout dans le dossier 'portraitia'
             $portraits = $formResume->get('portraits')->getData();
 
             foreach ($portraits as $portrait) {

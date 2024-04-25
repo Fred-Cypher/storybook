@@ -41,6 +41,9 @@ class PictureService
             case 'image/webp':
                 $pictureSource = imagecreatefromwebp($picture);
                 break;
+            case 'image/gif' :
+                $pictureSource = imagecreatefromgif($picture);
+                break;
             default:
                 throw new Exception('Format d\'image incorrect');
         }

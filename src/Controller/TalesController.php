@@ -19,6 +19,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/tales', name: 'app_tales_')]
 class TalesController extends AbstractController
 {
+    // Affichage de la page avec la liste de tous les contes et histoires
     #[Route('/', name: 'index')]
     public function index(TalesRepository $talesRepository): Response
     {
@@ -27,6 +28,7 @@ class TalesController extends AbstractController
         ]);
     }
 
+    // Affichage de la liste des contes et histoire à modifier / supprimer
     #[Route('/admin/tales_list', name: 'admin_tales_list')]
     public function listTales(TalesRepository $talesRepository)
     {
@@ -37,22 +39,26 @@ class TalesController extends AbstractController
         ]);
     }
 
+    // Affichage de la page d'enregistrement d'un nouveau conte
     #[Route('/admin/new', name: 'new')]
     public function new(Request $request, EntityManagerInterface $manager, PictureService $pictureService, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
+        // Création d'un nouveau conte
         $tale = new Tales();
-
+        // Création du formulaire
         $formTale = $this->createForm(TalesFormType::class, $tale);
-
+        // Traitement de la requête du formulaire
         $formTale->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if($formTale->isSubmitted() && $formTale->isValid()){
+            // Récupération image et ajout dans le dossier 'tales'
             $drawings = $formTale->get('drawings')->getData();
 
             foreach($drawings as $drawing){
-                $folder = 'tales';
+                $folder = 'tales'; // Dossier destination
                 $file = $pictureService->add($drawing, $folder, 300, 300);
 
                 $image = new Drawings;
@@ -60,6 +66,7 @@ class TalesController extends AbstractController
                 $tale->addDrawing($image);
             }
 
+            // Récupération utilisateur connecté et génération du slug
             $tale->setUser($this->getUser());
             $slug = $slugger->slug($tale->getTitle());
             $tale->setSlug($slug);
@@ -77,6 +84,7 @@ class TalesController extends AbstractController
         ]);
     }
 
+    // Affichage d'un conte
     #[Route('/{slug}', name:'show', methods: ['GET'])]
     public function show(Tales $tales): Response
     {
@@ -85,6 +93,7 @@ class TalesController extends AbstractController
         ]);
     }
 
+    // Affichage de la page de modification d'un conte
     #[Route('/admin/edit/{id}', name: 'edit_tale', methods: ['GET', 'POST'])]
     public function editTale(Request $request, Tales $tale, TalesRepository $talesRepository, PictureService $pictureService, SluggerInterface $slugger): Response
     {
@@ -93,8 +102,9 @@ class TalesController extends AbstractController
         $formTale = $this->createForm(EditTaleFormType::class, $tale);
         $formTale->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if ($formTale->isSubmitted() && $formTale->isValid()){
-
+            // Récupération image et ajout au dossier 'tales'
             $drawings = $formTale->get('drawings')->getData();
 
             foreach ($drawings as $drawing) {
@@ -123,6 +133,7 @@ class TalesController extends AbstractController
         ]);
     }
 
+    // Suppression d'un conte
     #[Route('/admin/delete/{id}', name: 'delete_tale', methods: ['POST'])]
     public function deleteTale(Tales $tale, Request $request, TalesRepository $talesRepository): Response
     {
@@ -136,6 +147,7 @@ class TalesController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
 
+    // Suppression des images des contes
     #[Route('/admin/delete/drawing/{id}', name: 'delete_drawing', methods: ['DELETE'])]
     public function deleteDrawing(Drawings $drawing, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
     {

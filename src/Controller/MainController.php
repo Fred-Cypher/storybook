@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    // Affichage de ma page d'accueil du site
     #[Route('/', name: 'app_main', methods: ['GET'])]
     public function index(TalesRepository $talesRepository, ResumeRepository $resumeRepository): Response
     {
@@ -22,6 +23,7 @@ class MainController extends AbstractController
         ]);
     }
 
+    // Page pour faire des tests d'affichage pendant le développement
     #[Route('/tests', name: 'app_tests')]
     public function tests()
     {
