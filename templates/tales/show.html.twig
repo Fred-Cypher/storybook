@@ -3,19 +3,20 @@
 {% block title %}{{ tales.title }}{% endblock %}
 
 {% block body %}
-<main class="container">
-    <section class="col-10 m-auto">
-        <h2>{{ tales.title }}</h2>
-        <p>{{ tales.content|nl2br }}</p>
-        <p class="text-center">
-            {% for drawing in tales.drawings %}
-                <img src="{{ asset('assets/uploads/tales/' ~ drawing.name) }}" class="drawing" alt="Dessin d'inllustration du conte">
-            {% endfor %}
-        </p>
-        <p class="text-center backTo">
-            <a href="{{ path('app_tales_index') }}" class="btn btn-secondary">Retour à la liste de contes</a>
-        </p>
-        
-    </section>
+<main class="taleBackground">
+    <div class="container">
+        <section class="col-10 m-auto textBackground">
+            <p class="p-3 h2">{{ tales.title }}</p>
+            <p class="p-3">{{ tales.content|nl2br }}</p>
+            <p class="text-center">
+                {% for drawing in tales.drawings %}
+                    <img src="{{ asset('assets/uploads/tales/' ~ drawing.name) }}" class="drawing" alt="Dessin d'illustration du conte">
+                {% endfor %}
+            </p>
+            <p class="text-center backTo">
+                <a href="{{ path('app_tales_index') }}" class="btn btn-secondary">Retour à la liste de contes</a>
+            </p>
+        </section>
+    </div>
 </main>
 {% endblock %}

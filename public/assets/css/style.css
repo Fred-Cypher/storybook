@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+/**** GENERAL ****/
 body{
     background-color: rgba(255, 228, 196, 0.726);
     border: 1px solid royalblue;
@@ -18,34 +19,22 @@ header{
     border: blueviolet 1px solid;
 }
 
-.logo{
-    width: 5rem;
-}
-
 footer{
     background-color: rgba(255, 235, 205, 0.514);
     border: 1px solid blue;
-}
-
-.catError{
-    width: 10rem;
 }
 
 .backTo{
     height: 6rem;
 }
 
-.gameCard{
-    height: 22rem;
+/**** IMAGES - ICONES - LOGO ****/
+.logo{
+    width: 5rem;
 }
 
-.gameButton{
-    display: flex;
-    position: absolute;
-    bottom: 1rem;
-    justify-content: center;
-    width: 100%;
-    margin-left: -1.2rem;
+.catError{
+    width: 10rem;
 }
 
 .thumbnail{
@@ -76,6 +65,21 @@ footer{
     height: 1.5rem;
 }
 
+/**** GAMES ****/
+.gameCard{
+    height: 22rem;
+}
+
+.gameButton{
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-left: -1.2rem;
+}
+
+/**** HOME ****/
 .titleList, 
 .charactere{
     font-weight: bold;
@@ -98,4 +102,21 @@ footer{
 .chevron{
     background-color: rgba(245, 245, 245, 0.384);
     height: 3rem;
+}
+
+/**** BACKGROUNDS ****/
+.gameBackground{
+    background-image: url("../images/background/jeux.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.textBackground{
+    background-color: oldlace;
+}
+
+.taleBackground{
+    background-image: url("../images/background/collines.png");
+    background-attachment: fixed;
+    background-size: cover;
 }
