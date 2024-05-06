@@ -4,27 +4,30 @@
 
 {% block body %}
     <main class="container">
-        <section class="row">
+        <section class="col">
             <div class="col-12 h3">Ajouter un jeu vidéo récent</div>
-            <div class="col-12 vh-100">
+            <div class="mb-5">
                 {{ form_start(formRecent) }}
                     {{ form_row(formRecent.title) }}
                     {{ form_row(formRecent.subtitle) }}
                     {{ form_row(formRecent.editor) }}
                     {{ form_row(formRecent.illustrations) }}
                     {{ form_row(formRecent.category) }}
+                    <span class="smallCategory">Action, Aventure,  Point\'n Click, Réflexion, Ludo-éducatif, RPG, Plate-forme, Roman graphique, Indépendant</span>
                     {{ form_row(formRecent.year) }}
                     {{ form_row(formRecent.pegi) }}
+                    <span class="smallCategory">Tout public : choisir 3 ans</span>
                     {{ form_row(formRecent.notes) }}
                     {{ form_row(formRecent.digest) }}
-                    <div class="text-center">
+                    
+                    <div class="text-center mt-3">
                         <button type="submit" class="btn btn-outline-dark mt-3">Enregistrer le jeu vidéo récent</button>
                     </div>
                 {{ form_end(formRecent) }}
             </div>
+            <div class="backTo">
+                <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
+            </div>
         </section>
-        <div class="backTo">
-            <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
-        </div>
     </main>
 {% endblock %}

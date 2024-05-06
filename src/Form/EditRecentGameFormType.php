@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\RecentGames;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -52,11 +53,27 @@ class EditRecentGameFormType extends AbstractType
                 ],
                 'label' => 'Année de sortie du jeu : '
             ])
-            ->add('pegi', options: [
+            /*->add('pegi', options: [
                 'attr' => [
                     'class' => 'form-control mt-2 col-md-2'
                 ],
                 'label' => 'Âge minimal recommandé : '
+            ])*/
+            ->add('pegi', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-check my-2 mx-3 d-flex justify-content-around col-md-4'
+                ],
+                'label' => 'Âge minimal recommandé : ',
+                'label_attr' => ['class' => 'mt-2'],
+                'choices' => [
+                    3 => '3',
+                    7 => '7',
+                    12 => '12',
+                    16 => '16',
+                    18 => '18'
+                ],
+                'multiple' => false,
+                'expanded' => true
             ])
             ->add('notes', options: [
                 'attr' => [

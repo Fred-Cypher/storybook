@@ -17,48 +17,54 @@ class TalesFormType extends AbstractType
         $builder
             ->add('title', options:[
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ], 
-                'label' => 'Titre : '
+                'label' => 'Titre : ', 
+                'label_attr' => ['class' => 'mt-2'] 
             ])
             ->add('explanation', options: [
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ], 
-                'label' => 'Note explicative (facultatif) :'
+                'label' => 'Note explicative (facultatif) :',
+                'label_attr' => ['class' => 'mt-2'] 
             ])
             ->add('digest', options: [
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ],
-                'label' => 'Résumé : '
+                'label' => 'Résumé : ', 
+                'label_attr' => ['class' => 'mt-2'] 
             ])
             ->add('content', options: [
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ],
-                'label' => 'Conte : '
+                'label' => 'Conte : ', 
+                'label_attr' => ['class' => 'mt-2'] 
             ])
             ->add('drawings', FileType::class, [
                 'label' => 'Dessin d\'illustration : ',
+                'label_attr' => ['class' => 'mt-2'] ,
                 'multiple' => true,
                 'mapped' => false,
                 'required' => true,
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ]
             ])
             /*->add('drawings', options: [
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ],
                 'label' => 'Image d\'illustration :'
             ])*/
             ->add('caption', options: [
                 'attr' => [
-                    'class' => 'form-control mt-2'
+                    'class' => 'form-control mt-1'
                 ],
-                'label' => 'Légende de l\'image : '
+                'label' => 'Légende de l\'image : ', 
+                'label_attr' => ['class' => 'mt-2'] 
             ])
             
         ;

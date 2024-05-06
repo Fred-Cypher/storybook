@@ -79,6 +79,12 @@ footer{
     margin-left: -1.2rem;
 }
 
+/**** ADMIN ****/
+.smallCategory{
+    font-size: small;
+    color:rgb(59, 56, 56);
+}
+
 /**** HOME ****/
 .titleList, 
 .charactere{
