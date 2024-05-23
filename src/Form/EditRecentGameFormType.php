@@ -41,11 +41,30 @@ class EditRecentGameFormType extends AbstractType
                     'class' => 'form-control mt-2'
                 ],
             ])
-            ->add('category', options: [
+            /*->add('category', options: [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
                 'label' => 'Catégorie(s) : '
+            ])*/
+            ->add('category', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-check my-2 mx-3 d-flex justify-content-around'
+                ],
+                'label' => 'Catégorie(s) / genre : ',
+                'choices' => [
+                    'Action' => 'action',
+                    'Aventure' => 'aventure',
+                    'Point\'n click' => 'point\'n click',
+                    'Réflexion' => 'reflexion',
+                    'Ludo-éducatif' => 'ludo-educatif',
+                    'RPG' => 'rpg',
+                    'Plate-forme' => 'plate-forme',
+                    'Roman graphique' => 'roman graphique',
+                    'Indépendant' => 'independant'
+                ],
+                'multiple' => true,
+                'expanded' => true
             ])
             ->add('year', options: [
                 'attr' => [

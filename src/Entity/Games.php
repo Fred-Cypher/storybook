@@ -25,8 +25,8 @@ class Games
     #[ORM\Column(length: 255)]
     private ?string $editor = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $category = null;
+    #[ORM\Column(type: "json", nullable: true)]
+    private ?array $category = [];
 
     #[ORM\Column(nullable: true)]
     private ?int $pegi = null;
@@ -110,12 +110,12 @@ class Games
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?array
     {
         return $this->category;
     }
 
-    public function setCategory(?string $category): static
+    public function setCategory(?array $category): self
     {
         $this->category = $category;
 

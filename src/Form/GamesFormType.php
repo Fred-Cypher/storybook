@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Games;
-use App\Entity\Users;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -47,32 +45,32 @@ class GamesFormType extends AbstractType
                 'class' => 'form-control mt-1',
             ],
             ])
-            ->add('category', options: [
+            /*->add('category', options: [
             'attr' => [
                 'class' => 'form-control mt-1'
             ],
             'label' => 'Catégorie(s) / genre : ', 
             'label_attr' => ['class' => 'mt-2'] 
-            ])
-            /*->add('category', ChoiceType::class, [
+            ])*/ 
+            ->add('category', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check my-2 mx-3 d-flex justify-content-around'
                 ],
                 'label' => 'Catégorie(s) / genre : ',
                 'choices' => [
-                    'Action' => 'Action',
-                    'Aventure' => 'Aventure',
-                    'Point\'n click' => 'Point\' click',
-                    'Reflexion' => 'Réflexion',
-                    'Ludo-educatif' => 'Ludo-éducatif',
-                    'RPG' => 'RPG',
-                    'Plate-forme' => 'Plate-forme',
-                    'Roman graphique' => 'Roman graphique',
-                    'Independant' => 'Indépendant'
+                    'Action' => 'action',
+                    'Aventure' => 'aventure',
+                    'Point\'n click' => 'point\'n click',
+                    'Réflexion' => 'reflexion',
+                    'Ludo-éducatif' => 'ludo-educatif',
+                    'RPG' => 'rpg',
+                    'Plate-forme' => 'plate-forme',
+                    'Roman graphique' => 'roman graphique',
+                    'Indépendant' => 'independant'
                 ],
                 'multiple' => true,
                 'expanded' => true
-            ])*/
+            ])
             ->add('year', options: [
                 'attr' => [
                     'class' => 'form-control mt-1 col-md-2'
