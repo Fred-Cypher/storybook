@@ -23,6 +23,13 @@ class MainController extends AbstractController
         ]);
     }
 
+    // Affichage des images de background
+    #[Route('/backgrounds', name: 'app_backgrounds')]
+    public function backgrounds()
+    {
+        return $this->render('main/backgrounds.html.twig');
+    }
+
     // Page pour faire des tests d'affichage pendant le développement
     #[Route('/tests', name: 'app_tests')]
     public function tests()

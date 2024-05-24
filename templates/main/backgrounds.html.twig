@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="">
+    <div class="container">
+        coucou
+        <section class="row m-auto">
+            <div class="col-6 m-auto">1
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Page d'accueil</h5>
+                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                        <p class="card-text"><small class="text-muted">Paysage onirique</small></p>
+                    </div>
+                    <img src="{{ asset('assets/images/background/onirique.png') }}" class="backgroundImage" alt="Paysage onirique">
+                </div>
+            </div>
+            <div class="col-6 m-auto">2
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste de contes</h5>
+                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ia</p>
+                        <p class="card-text"><small class="text-muted">Château en ruine sur une colline</small></p>
+                    </div>
+                    <img src="{{ asset('assets/images/background/chateau.png') }}" class="backgroundImage" alt="Château en ruine sur une colline verdoyante">
+                </div>
+            </div>
+            <div class="col-6 m-auto">1
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Conte</h5>
+                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                        <p class="card-text"><small class="text-muted">Collines</small></p>
+                    </div>
+                    <img src="{{ asset('assets/images/background/collines.png') }}" class="backgroundImage" alt="Collines verdoyantes">
+                </div>
+            </div>
+            <div class="col-6 m-auto">2
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Jeux vidéo</h5>
+                        <p class="card-text">Image créée grâce à l'IA sur le site Image Creator from Designer</p>
+                        <p class="card-text"><small class="text-muted">Paysage imaginaire avec des symboles de jeux vidéo</small></p>
+                    </div>
+                    <img src="{{ asset('assets/images/background/jeux.png') }}" class="backgroundImage" alt="Paysage avec des symboles représentants les jeux vidéo">
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+    
+{% endblock %}

@@ -10,6 +10,10 @@ body{
     min-height: 100vh;
 }
 
+main{
+    min-height: 100vh;
+}
+
 a{
     text-decoration: none;
 }
@@ -63,6 +67,11 @@ footer{
 .plume{
     width: 1.5rem;
     height: 1.5rem;
+}
+
+.backgroundImage{
+    width: 100%;
+    max-height: 20rem;
 }
 
 /**** GAMES ****/
@@ -119,10 +128,18 @@ footer{
 
 .textBackground{
     background-color: oldlace;
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px rgba(7, 7, 7, 0.247);
 }
 
 .taleBackground{
     background-image: url("../images/background/collines.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.homeBackground{
+    background-image: url("../images/background/onirique.png");
     background-attachment: fixed;
     background-size: cover;
 }
