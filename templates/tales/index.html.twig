@@ -3,24 +3,26 @@
 {% block title %}Liste des contes{% endblock %}
 
 {% block body %}
-    <main class="container">
-        <section class="row mt-3">
-            <div class="col-10 m-auto">
-                <p class="h2">Liste des contes</p>
-                <p class="mt-2">Contes et petits textes que j'ai écrits il y a quelques années.</p>
-                <p class="small">Cliquez sur le titre pour lire le conte. </p>
+    <main class="listTalesBackground">   
+        <div class="container">
+            <section class="row mt-3">
+                <div class="col-10 m-auto textBackground mt-3">
+                    <p class="h2">Liste des contes</p>
+                    <p class="mt-2">Contes et petits textes que j'ai écrits il y a quelques années.</p>
+                    <p class="small">Cliquez sur le titre pour lire le conte. </p>
+                </div>
+                <div class="col-10 m-auto textBackground mt-4 py-3">
+                    {% for tale in tales %}
+                        <p><!-- Plume multicolore générée grâce à l'IA : Image Creator from Designer -->
+                            <img src="{{ asset('assets/images/logo/plume400.png') }}" class="plume" alt="Plume">
+                            <a href="{{ path('app_tales_show', {'slug': tale.slug}) }}">{{ tale.title }}</a>
+                        </p>
+                    {% endfor %}
+                </div>
+            </section>
+            <div class="backTo text-center mt-3">
+                <a href="{{ path('app_main') }}" class="btn btn-secondary"><img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore"> Retour à l'accueil</a>
             </div>
-            <div class="col-10 m-auto">
-                {% for tale in tales %}
-                    <p><!-- Plume multicolore générée grâce à l'IA : Image Creator from Designer -->
-                        <img src="{{ asset('assets/images/logo/plume400.png') }}" class="plume" alt="Plume">
-                        <a href="{{ path('app_tales_show', {'slug': tale.slug}) }}">{{ tale.title }}</a>
-                    </p>
-                {% endfor %}
-            </div>
-        </section>
-        <div class="backTo text-center">
-            <a href="{{ path('app_main') }}" class="btn btn-secondary"><img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore"> Retour à l'accueil</a>
         </div>
-    </main>
+    </main> 
 {% endblock %}
