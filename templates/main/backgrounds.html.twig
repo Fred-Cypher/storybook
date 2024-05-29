@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Fonds d'écran{% endblock %}
+
 {% block body %}
-<main class="">
+<main class="backBackground">
     <div class="container">
         <section class="row m-auto">
             <div class="col-md-6 m-auto mt-3">
@@ -86,7 +88,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-6 m-auto mt-3">
                 <div class="card">
                     <div class="card-body">
@@ -108,6 +109,34 @@
                         </div>
                         <div class="modal-body m-auto">
                             <img src="{{ asset('assets/images/background/jeux.png') }}" class="backgroundModal" alt="Paysage avec des symboles représentants les jeux vidéo">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 m-auto mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Fonds d'écran</h5>
+                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                        <p class="card-text"><small class="text-muted">Paysage onirique désertique</small></p>
+                    </div>
+                    <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundBack">
+                        <img src="{{ asset('assets/images/background/desert.png') }}" class="backgroundImage" alt="Paysage désertique">
+                    </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal" id="backgroundBack" tabindex="-1" aria-labelledby="backgroundBackLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body m-auto">
+                            <img src="{{ asset('assets/images/background/desert.png') }}" class="backgroundModal" alt="Paysage avec des symboles représentants les jeux vidéo">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

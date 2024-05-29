@@ -153,3 +153,9 @@ footer{
     background-attachment: fixed;
     background-size: cover;
 }
+
+.backBackground{
+    background-image: url("../images/background/desert.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
