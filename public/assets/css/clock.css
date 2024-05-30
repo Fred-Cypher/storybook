@@ -101,7 +101,8 @@
 .DPDC{
     width: auto;
     padding: 0.6rem;
-    background-color: /*#ffffff*/ rgba(255, 228, 196, 0.726);
+    background-color: rgba(255, 235, 205, 0.514);
+    /*background-color: #ffffff rgba(255, 228, 196, 0.726);*/
     /*border: 1px solid #343434;*/
     border-radius: 8px
 } /* widget width, padding, background, border, rounded corners */
@@ -153,7 +154,7 @@
     width: 45px;
     overflow: hidden;
     text-align: right;
-    font: normal 7px/7px Arial,sans-serif!important;
+    font: normal 7px/7px Arial,sans-serif !important;
     color: /*defined*/#007DBF
 }
 

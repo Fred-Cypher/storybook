@@ -41,12 +41,6 @@ class EditGameFormType extends AbstractType
                     'class' => 'form-control mt-2'
                 ],
             ])
-            /*->add('category', options: [
-                'attr' => [
-                    'class' => 'form-control mt-2'
-                ],
-                'label' => 'Catégorie(s) : '
-            ])*/
             ->add('category', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check my-2 mx-3 d-flex justify-content-around'
@@ -72,12 +66,6 @@ class EditGameFormType extends AbstractType
                 ],
                 'label' => 'Année de sortie du jeu : '
             ])
-            /*->add('pegi', options: [
-                'attr' => [
-                    'class' => 'form-control mt-2 col-md-2'
-                ],
-                'label' => 'Âge minimal recommandé : '
-            ])*/
             ->add('pegi', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check my-2 mx-3 d-flex justify-content-around col-md-4'
@@ -106,7 +94,6 @@ class EditGameFormType extends AbstractType
                 'multiple' => false,
                 'expanded' => true
             ])
-
             ->add('configuration', options: [
                 'attr' => [
                     'class' => 'form-control mt-2'

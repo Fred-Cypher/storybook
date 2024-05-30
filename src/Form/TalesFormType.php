@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Tales;
-use App\Entity\Users;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,12 +51,6 @@ class TalesFormType extends AbstractType
                     'class' => 'form-control mt-1'
                 ]
             ])
-            /*->add('drawings', options: [
-                'attr' => [
-                    'class' => 'form-control mt-1'
-                ],
-                'label' => 'Image d\'illustration :'
-            ])*/
             ->add('caption', options: [
                 'attr' => [
                     'class' => 'form-control mt-1'

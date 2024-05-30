@@ -6,7 +6,6 @@
 /**** GENERAL ****/
 body{
     background-color: rgba(255, 228, 196, 0.726);
-    border: 1px solid royalblue;
     min-height: 100vh;
 }
 
@@ -20,12 +19,10 @@ a{
 
 header{
     background-color: rgba(255, 235, 205, 0.514);
-    border: blueviolet 1px solid;
 }
 
 footer{
     background-color: rgba(255, 235, 205, 0.514);
-    border: 1px solid blue;
 }
 
 .backTo{

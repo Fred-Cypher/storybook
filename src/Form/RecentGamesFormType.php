@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\RecentGames;
-use App\Entity\Users;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -47,13 +45,6 @@ class RecentGamesFormType extends AbstractType
                     'class' => 'form-control mt-1'
                 ]
             ])
-            /*->add('category', options: [
-                'attr' => [
-                    'class' => 'form-control mt-1'
-                ],
-                'label' => 'Catégorie(s) : ',
-                'label_attr' => ['class' => 'mt-2'] 
-            ])*/
             ->add('category', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check my-2 mx-3 d-flex justify-content-around'
@@ -80,13 +71,6 @@ class RecentGamesFormType extends AbstractType
                 'label' => 'Année de sortie du jeu : ', 
                 'label_attr' => ['class' => 'mt-2'] 
             ])
-            /*->add('pegi', options: [
-                'attr' => [
-                    'class' => 'form-control mt-1'
-                ],
-                'label' => 'Âge minimum recommandé : ', 
-                'label_attr' => ['class' => 'mt-2'] 
-            ])*/
             ->add('pegi', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check my-2 mx-3 d-flex justify-content-around col-md-4'

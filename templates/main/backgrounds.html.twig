@@ -3,153 +3,151 @@
 {% block title %}Fonds d'écran{% endblock %}
 
 {% block body %}
-<main class="backBackground">
-    <div class="container">
-        <section class="row m-auto">
-            <div class="col-md-6 m-auto mt-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Page d'accueil</h5>
-                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
-                        <p class="card-text"><small class="text-muted">Paysage onirique</small></p>
-                    </div>
-                    <button  class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundHome">
-                        <img src="{{ asset('assets/images/background/onirique.png') }}" class="backgroundImage" alt="Paysage onirique">
-                    </button>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal" id="backgroundHome" tabindex="-1" aria-labelledby="backgroundHomeLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <main class="backBackground">
+        <div class="container">
+            <section class="row m-auto">
+                <div class="col-md-6 m-auto mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Page d'accueil</h5>
+                            <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                            <p class="card-text"><small class="text-muted">Paysage onirique</small></p>
                         </div>
-                        <div class="modal-body m-auto">
-                            <img src="{{ asset('assets/images/background/onirique.png') }}" class="backgroundModal"  alt="Paysage onirique">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        </div>
+                        <button  class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundHome">
+                            <img src="{{ asset('assets/images/background/onirique.png') }}" class="backgroundImage" alt="Paysage onirique">
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 m-auto mt-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Liste de contes</h5>
-                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ia</p>
-                        <p class="card-text"><small class="text-muted">Château en ruine sur une colline</small></p>
-                    </div>
-                    <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundList">
-                        <img src="{{ asset('assets/images/background/chateau.png') }}" class="backgroundImage" alt="Château en ruine sur une colline verdoyante">
-                    </button>
-                </div>
-            </div>
-            <div class="modal" id="backgroundList" tabindex="-1" aria-labelledby="backgroundListLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body m-auto">
-                            <img src="{{ asset('assets/images/background/chateau.png') }}" class="backgroundModal" alt="Château en ruine sur une colilne verdoyante">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <!-- Modal -->
+                <div class="modal" id="backgroundHome" tabindex="-1" aria-labelledby="backgroundHomeLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-auto">
+                                <img src="{{ asset('assets/images/background/onirique.png') }}" class="backgroundModal"  alt="Paysage onirique">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 m-auto mt-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Conte</h5>
-                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
-                        <p class="card-text"><small class="text-muted">Collines</small></p>
-                    </div>
-                    <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundTales">
-                        <img src="{{ asset('assets/images/background/collines.png') }}" class="backgroundImage" alt="Collines verdoyantes">
-                    </button>
-                </div>
-            </div>
-            <div class="modal" id="backgroundTales" tabindex="-1" aria-labelledby="backgroundTalesLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="col-md-6 m-auto mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Liste de contes</h5>
+                            <p class="card-text">Image créée grâce à l'IA sur le site artguru.ia</p>
+                            <p class="card-text"><small class="text-muted">Château en ruine sur une colline</small></p>
                         </div>
-                        <div class="modal-body m-auto">
-                            <img src="{{ asset('assets/images/background/collines.png') }}" class="backgroundModal" alt="Colliens verdoyantes">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        </div>
+                        <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundList">
+                            <img src="{{ asset('assets/images/background/chateau.png') }}" class="backgroundImage" alt="Château en ruine sur une colline verdoyante">
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 m-auto mt-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Jeux vidéo</h5>
-                        <p class="card-text">Image créée grâce à l'IA sur le site Image Creator from Designer</p>
-                        <p class="card-text"><small class="text-muted">Paysage imaginaire avec des symboles de jeux vidéo</small></p>
-                    </div>
-                    <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundGame">
-                        <img src="{{ asset('assets/images/background/jeux.png') }}" class="backgroundImage" alt="Paysage avec des symboles représentants les jeux vidéo">
-                    </button>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal" id="backgroundGame" tabindex="-1" aria-labelledby="backgroundGameLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body m-auto">
-                            <img src="{{ asset('assets/images/background/jeux.png') }}" class="backgroundModal" alt="Paysage avec des symboles représentants les jeux vidéo">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <div class="modal" id="backgroundList" tabindex="-1" aria-labelledby="backgroundListLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-auto">
+                                <img src="{{ asset('assets/images/background/chateau.png') }}" class="backgroundModal" alt="Château en ruine sur une colilne verdoyante">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 m-auto mt-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Fonds d'écran</h5>
-                        <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
-                        <p class="card-text"><small class="text-muted">Paysage onirique désertique</small></p>
-                    </div>
-                    <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundBack">
-                        <img src="{{ asset('assets/images/background/desert.png') }}" class="backgroundImage" alt="Paysage désertique">
-                    </button>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal" id="backgroundBack" tabindex="-1" aria-labelledby="backgroundBackLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="col-md-6 m-auto mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Conte</h5>
+                            <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                            <p class="card-text"><small class="text-muted">Collines</small></p>
                         </div>
-                        <div class="modal-body m-auto">
-                            <img src="{{ asset('assets/images/background/desert.png') }}" class="backgroundModal" alt="Paysage avec des symboles représentants les jeux vidéo">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        </div>
+                        <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundTales">
+                            <img src="{{ asset('assets/images/background/collines.png') }}" class="backgroundImage" alt="Collines verdoyantes">
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="backTo text-center mt-3">
-                <a href="{{ path('app_main') }}" class="btn btn-secondary"><img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore"> Retour à l'accueil</a>
-            </div>
-        </section>
-    </div>
-</main>
-
-    
+                <div class="modal" id="backgroundTales" tabindex="-1" aria-labelledby="backgroundTalesLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-auto">
+                                <img src="{{ asset('assets/images/background/collines.png') }}" class="backgroundModal" alt="Colliens verdoyantes">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 m-auto mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Jeux vidéo</h5>
+                            <p class="card-text">Image créée grâce à l'IA sur le site Image Creator from Designer</p>
+                            <p class="card-text"><small class="text-muted">Paysage imaginaire avec des symboles de jeux vidéo</small></p>
+                        </div>
+                        <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundGame">
+                            <img src="{{ asset('assets/images/background/jeux.png') }}" class="backgroundImage" alt="Paysage avec des symboles représentants les jeux vidéo">
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal" id="backgroundGame" tabindex="-1" aria-labelledby="backgroundGameLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-auto">
+                                <img src="{{ asset('assets/images/background/jeux.png') }}" class="backgroundModal" alt="Paysage avec des symboles représentants les jeux vidéo">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 m-auto mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Fonds d'écran</h5>
+                            <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                            <p class="card-text"><small class="text-muted">Paysage onirique désertique</small></p>
+                        </div>
+                        <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundBack">
+                            <img src="{{ asset('assets/images/background/desert.png') }}" class="backgroundImage" alt="Paysage désertique">
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal" id="backgroundBack" tabindex="-1" aria-labelledby="backgroundBackLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-auto">
+                                <img src="{{ asset('assets/images/background/desert.png') }}" class="backgroundModal" alt="Paysage avec des symboles représentants les jeux vidéo">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="backTo text-center mt-3">
+                    <a href="{{ path('app_main') }}" class="btn btn-secondary"><img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore"> Retour à l'accueil</a>
+                </div>
+            </section>
+        </div>
+    </main>
 {% endblock %}

@@ -9,17 +9,18 @@
             <div class="row">
                 <section class="col-12 m-auto mt-3">
                     <div class="col-10 m-auto mt-3 textBackground p-2 rounded">
-                        <p class="h2">Mes jeux vidéos</p>
-                        <p>Vous trouverez ici un aperçu des jeux vidéos que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</p>
+                        <p class="h2">Mes jeux vidéo</p>
+                        <p>Vous trouverez ici un aperçu des jeux vidéo que j'ai et auxquels j'ai joué, essentiellement sur PC, et quelques uns sur DS et 3DS.</p>
+                        <small>La classification Pegi est celle qui se trouvait sur les boîtes, à défaut celle trouvée sur Internet</small>
                         <p class="h3 mt-4">Jeux anciens</p>
                         <p>Jeux essentiellement sur PC, mais également sur DS et 3DS</p>
                     </div>
-                    <div class="col-12 row justify-content-center p-3">
+                    <div class="col-12 col-xxl-11 row justify-content-center p-3">
                         {% for game in games %}
-                            <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
+                            <div class="card col-md-3 m-2 pt-2 gameCard">
                             <!-- Logos de PC et de DS générées grâce à l'IA : Image Creator from Designer -->
-                            {% if game.support|contains('PC') %}<img src="{{ asset('assets/images/logo/PC400.png') }}" class="plume" alt="Logo d'un PC">{% endif %}
-                            {% if game.support|contains('DS') %}<img src="{{ asset('assets/images/logo/DS400-2.png') }}" class="plume" alt="Logo d'une console Nintendo DS">{% endif %}
+                                {% if game.support|contains('PC') %}<img src="{{ asset('assets/images/logo/PC400.png') }}" class="plume" alt="Logo d'un PC">{% endif %}
+                                {% if game.support|contains('DS') %}<img src="{{ asset('assets/images/logo/DS400-2.png') }}" class="plume" alt="Logo d'une console Nintendo DS">{% endif %}
                                 <img src="{{ asset('assets/uploads/games/miniatures/300x300-' ~ game.covers[0].name) }}" class="card-img-top thumbnail m-auto rounded-3" alt="Jaquette du jeu">
                                 <div class="card-body position-relative">
                                     <div class="card-title h5">{{ game.title }}</div>
@@ -165,9 +166,9 @@
                         <p class="h3">Jeux récents</p>
                         <p>Jeux PC exclusivement</p>
                     </div>
-                    <div class="col-12 row justify-content-center p-3">
+                    <div class="col-12 col-xxl-11 row justify-content-center p-3">
                         {% for recentgame in recentgames %}
-                            <div class="card col-md-3 col-xxl-2 m-2 pt-2 gameCard">
+                            <div class="card col-md-3 m-2 pt-2 gameCard">
                                 <img src="{{ asset('assets/images/logo/PC400.png') }}" class="plume" alt="Logo d'un PC">
                                 <img src="{{ asset('assets/uploads/illustrations/miniatures/300x300-' ~ recentgame.illustrations[0].name) }}" class="card-img-top thumbnail m-auto rounded-3" alt="Jaquette du jeu">
                                 <div class="card-body">
@@ -299,7 +300,10 @@
                     </div>
                 </section>
                 <div class="backTo text-center">
-                    <a href="{{ path('app_main') }}" class="btn btn-secondary">Retour à l'accueil</a>
+                    <a href="{{ path('app_main') }}" class="btn btn-secondary">
+                        <img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore">  
+                        Retour à l'accueil
+                    </a>
                 </div>
             </div>
         </div>

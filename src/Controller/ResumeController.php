@@ -74,7 +74,7 @@ class ResumeController extends AbstractController
 
     } 
     
-    // Suppression d'un image du portrait
+    // Suppression d'une image du portrait
     #[Route('/admin/delete/portrait/{id}', name: 'delete_portrait', methods: ['DELETE'])]
     public function deleteDrawing(Portraits $portrait, Request $request, EntityManagerInterface $manager, PictureService $pictureService): JsonResponse
     {
