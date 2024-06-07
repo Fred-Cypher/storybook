@@ -41,7 +41,7 @@ class EditTaleFormType extends AbstractType
                 'label' => 'Dessin d\'illustration : ',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ]

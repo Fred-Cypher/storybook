@@ -43,12 +43,11 @@ class TalesFormType extends AbstractType
             ])
             ->add('drawings', FileType::class, [
                 'label' => 'Dessin d\'illustration : ',
-                'label_attr' => ['class' => 'mt-2'] ,
                 'multiple' => true,
                 'mapped' => false,
                 'required' => true,
                 'attr' => [
-                    'class' => 'form-control mt-1'
+                    'class' => 'form-control mt-2'
                 ]
             ])
             ->add('caption', options: [

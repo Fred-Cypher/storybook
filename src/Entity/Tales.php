@@ -175,10 +175,10 @@ class Tales
         return $this->drawings;
     }
 
-    public function addDrawing(Drawings $drawing): self
+    public function addDrawing(Drawings $drawing): static
     {
         if (!$this->drawings->contains($drawing)) {
-            $this->drawings[] = $drawing;
+            $this->drawings->add($drawing);
             $drawing->setTales($this);
         }
         return $this;

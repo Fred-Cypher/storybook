@@ -6,18 +6,18 @@
     <main class="container">
         <section class="col">
             <div class="col-12 h3">Modifier un conte</div>
-            <div class="col-12 vh-100">
+            <div class="mb-5">
                 {{ form_start(formTale) }}
                     {{ form_row(formTale.title) }}
                     {{ form_row(formTale.explanation) }}
                     {{ form_row(formTale.digest) }}
                     {{ form_row(formTale.content) }}
-                    {% if app.request.get('_route' == 'app_tales_edit_tale') %}
+                    {% if app.request.attributes.get('_route') == 'app_tales_edit_tale' %}
                         <div class="my-2">Dessin actuel :</div>
                         {% for drawing in tales.drawings %}
                             <div>
-                                <img src="{{ asset('assets/uploads/tales/miniatures/300x300-' ~ drawing.name) }}" class="card-img-top thumbnail" alt="Dessin d'inllustration du conte">
-                                <a href="{{ path('app_games_delete_cover', {id: drawing.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ drawing.id) }}" class="btn btn-danger">Supprimer l'image</a>
+                                <img src="{{ asset('assets/uploads/tales/miniatures/300x300-' ~ drawing.name) }}" class="card-img-top thumbnail" alt="Dessin d'illustration du conte">
+                                <a href="{{ path('app_tales_delete_drawing', {id: drawing.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ drawing.id) }}" class="btn btn-danger">Supprimer l'image</a>
                             </div>
                         {% endfor %}
                     {% endif %}
@@ -26,9 +26,12 @@
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-dark mt-3">Enregistrer le conte</button>
                         </div>
-                    {{ form_end(formTale) }}
+                {{ form_end(formTale) }}
             </div>
         </section>
+        <div class="backTo">
+            <a href="{{ path('app_admin_index') }}" class="btn btn-secondary">Retour à l'administration du site</a>
+        </div>
     </main>
 {% endblock %}
 
