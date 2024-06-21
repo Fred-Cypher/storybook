@@ -144,6 +144,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 m-auto mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Partie réservée à l'administration</h5>
+                            <p class="card-text">Image créée grâce à l'IA sur le site artguru.ai</p>
+                            <p class="card-text"><small class="text-muted">Paysage de style steampunk présent dans la partie réservée aux administrateurs</small></p>
+                        </div>
+                        <button type="button" class="cover m-auto mb-3 rounded" data-bs-toggle="modal" data-bs-target="#backgroundAdmin">
+                            <img src="{{ asset('assets/images/background/steampunk.png') }}" class="backgroundImage" alt="Paysage de style steampunk">
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal" id="backgroundAdmin" tabindex="-1" aria-labelledby="backgroundAdminLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-auto">
+                                <img src="{{ asset('assets/images/background/steampunk.png') }}" class="backgroundModal" alt="Paysage de style steampunk">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="backTo text-center mt-3">
                     <a href="{{ path('app_main') }}" class="btn btn-secondary"><img src="{{ asset('assets/images/logo/logo1-400.png') }}" class="plume" alt="Logo représentant une plume multicolore"> Retour à l'accueil</a>
                 </div>

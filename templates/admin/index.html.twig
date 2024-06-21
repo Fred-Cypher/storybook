@@ -3,48 +3,50 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-    <main class="container">
-        <section class="row p-3 border border-dark m-3">
-            <span class="h3">Enregistrement nouveau conte ou nouveau jeu </span>
-            <div class="col-md-4 ">
-                <a type="button" href="{{ path('app_tales_new') }}" class="nav-link btn btn-outline-secondary">Conte</a>
-                    Lien vers enregistrement conte
-            </div>
-            <div class="col-md-4">
-                <a type="button" href="{{ path('app_games_new') }}" class="nav-link btn btn-outline-secondary">Jeu ancien</a>
-                Lien vers enregistrement jeu vidéo ancien
-            </div>
-            <div class="col-md-4">
-                <a type="button" href="{{ path('app_games_new_recent') }}" class="nav-link btn btn-outline-secondary">Jeu récent</a>
-                Lien vers enregistrement jeu vidéo récent
-            </div>
-        </section>
-        <section class="row p-3 border border-dark m-3">
-            <span class="h3">Modification ou suppression</span>
-            <div class="col-md-4 ">
-                <a type="button" href="{{ path('app_tales_admin_tales_list') }}" class="nav-link btn btn-outline-secondary">Conte</a>
-                    Lien vers modification ou suppression conte
-            </div>
-            <div class="col-md-4">
-                <a type="button" href="{{ path('app_games_admin_games_list') }}" class="nav-link btn btn-outline-secondary">Jeu ancien</a>
-                Lien vers modification ou suppression jeu vidéo ancien
-            </div>
-            <div class="col-md-4">
-                <a type="button" href="{{ path('app_games_admin_recent_games_list') }}" class="nav-link btn btn-outline-secondary">Jeu récent</a>
-                Lien vers modification ou suppression jeu vidéo récent
-            </div>
-        </section>
-        <section class="row p-3 border border-dark m-3">
-            <span class="h3">Gestion de la présentation</span>
-            <div class="col-md-4">
-                <a type="button" href="{{ path('app_resume_new') }}" class="nav-link btn btn-outline-secondary">Création page Accueil</a>
-                Lien vers création page accueil
-            </div>
-            <div class="col-md-4 ">
-                <a type="button" href="{{ path('app_resume_edit_resume', {id: 1}) }}" class="nav-link btn btn-outline-secondary">Gestion Accueil</a>
-                    Lien vers modification ou suppression contenu page accueil
-            </div>
-        </section>
+    <main class="adminBackground">
+        <div class="container pt-3">
+            <section class="row p-3 border border-dark m-3 textBackground">
+                <span class="h3">Enregistrement nouveau conte ou nouveau jeu </span>
+                <div class="col-md-4 ">
+                    <a type="button" href="{{ path('app_tales_new') }}" class="nav-link btn btn-outline-secondary">Conte</a>
+                        Lien vers enregistrement conte
+                </div>
+                <div class="col-md-4">
+                    <a type="button" href="{{ path('app_games_new') }}" class="nav-link btn btn-outline-secondary">Jeu ancien</a>
+                    Lien vers enregistrement jeu vidéo ancien
+                </div>
+                <div class="col-md-4">
+                    <a type="button" href="{{ path('app_games_new_recent') }}" class="nav-link btn btn-outline-secondary">Jeu récent</a>
+                    Lien vers enregistrement jeu vidéo récent
+                </div>
+            </section>
+            <section class="row p-3 border border-dark m-3 textBackground">
+                <span class="h3">Modification ou suppression</span>
+                <div class="col-md-4 ">
+                    <a type="button" href="{{ path('app_tales_admin_tales_list') }}" class="nav-link btn btn-outline-secondary">Conte</a>
+                        Lien vers modification ou suppression conte
+                </div>
+                <div class="col-md-4">
+                    <a type="button" href="{{ path('app_games_admin_games_list') }}" class="nav-link btn btn-outline-secondary">Jeu ancien</a>
+                    Lien vers modification ou suppression jeu vidéo ancien
+                </div>
+                <div class="col-md-4">
+                    <a type="button" href="{{ path('app_games_admin_recent_games_list') }}" class="nav-link btn btn-outline-secondary">Jeu récent</a>
+                    Lien vers modification ou suppression jeu vidéo récent
+                </div>
+            </section>
+            <section class="row p-3 border border-dark m-3 textBackground">
+                <span class="h3">Gestion de la présentation</span>
+                <div class="col-md-4">
+                    <a type="button" href="{{ path('app_resume_new') }}" class="nav-link btn btn-outline-secondary">Création page Accueil</a>
+                    Lien vers création page accueil
+                </div>
+                <div class="col-md-4 ">
+                    <a type="button" href="{{ path('app_resume_edit_resume', {id: 1}) }}" class="nav-link btn btn-outline-secondary">Gestion Accueil</a>
+                        Lien vers modification ou suppression contenu page accueil
+                </div>
+            </section>
+        </div>
     </main>
 {% endblock %}
 

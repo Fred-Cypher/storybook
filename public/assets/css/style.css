@@ -156,3 +156,9 @@ footer{
     background-attachment: fixed;
     background-size: cover;
 }
+
+.adminBackground{
+    background-image: url("../images/background/steampunk.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
